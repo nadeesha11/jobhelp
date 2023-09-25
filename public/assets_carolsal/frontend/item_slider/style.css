@@ -1,0 +1,246 @@
+
+.item_slider_row{
+    width: 85.5%;
+}
+
+.swiper-container {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 320px;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.picture {
+  width: 320px;
+  height: 320px;
+  overflow: hidden;
+}
+.picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.detail {
+  padding: 25px 20px;
+  font-weight: 600;
+  text-align: center;
+}
+.detail h3 {
+  margin: 0;
+  font-size: 20px;
+}
+.detail span {
+  display: block;
+  font-size: 16px;
+  color: #f44336;
+}
+
+
+.land_div{
+    height: 280px;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center bottom;
+    padding: 20px;
+    /*background: linear-gradient(to top,#139691,transparent);*/
+}
+
+
+.img_text_div {
+    width: 100%;
+    height: 210px;
+    margin-top: -210px;
+    color: #ffffff;
+    position: relative;
+    background: linear-gradient(to top,#000000,transparent);
+    bottom: 0;
+    padding: 20px;
+    z-index: 999;
+    /*display: flex;*/
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.img_text_div .texts{
+  position: absolute;
+  bottom: 20px;
+}
+
+.img_text_div h2{
+    text-transform: uppercase;
+    line-height: 28px;
+    font-size: 20px;
+    margin: 0px;
+    color: #ffffff;
+}
+
+.img_text_div p{
+    text-transform: uppercase;
+    margin: 0px;
+    color: #ffffff;
+}
+
+.img_text_div h4{
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: 900;
+    color: #eb0009;
+    margin-bottom: 0px;
+}
+
+.land_item a{
+    color: #ffffff;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.land_item:hover a{
+    color: #05a3d2;
+}
+
+.land_item:hover .img_text_div{
+    background: linear-gradient(to top,#00652e,transparent);
+}
+
+
+
+
+
+.item_slider_row02{
+    width: 85.5%;
+}
+
+.swiper-container02 {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+.swiper-slide02 {
+  background-position: center;
+  background-size: cover;
+  width: 320px;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.picture02 {
+  width: 320px;
+  height: 320px;
+  overflow: hidden;
+}
+.picture02 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.detail02 {
+  padding: 25px 20px;
+  font-weight: 600;
+  text-align: center;
+}
+.detail02 h3 {
+  margin: 0;
+  font-size: 20px;
+}
+.detail02 span {
+  display: block;
+  font-size: 16px;
+  color: #f44336;
+}
+
+
+.land_div02{
+    height: 200px;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center bottom;
+    padding: 20px;
+    /*background: linear-gradient(to top,#139691,transparent);*/
+}
+
+
+.img_text_div02{
+    width: 100%;
+    height: 210px;
+    margin-top: -210px;
+    color: #ffffff;
+    position: relative;
+    background: linear-gradient(to top,#000000,transparent);
+    bottom: 0;
+    padding: 20px;
+    z-index: 999;
+    /*display: flex;*/
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.img_text_div02 .texts02{
+  position: absolute;
+  bottom: 20px;
+}
+
+.img_text_div02 h2{
+    text-transform: uppercase;
+    line-height: 28px;
+    font-size: 20px;
+    margin: 0px;
+    color: #ffffff;
+}
+
+.img_text_div02 p{
+    text-transform: uppercase;
+    margin: 0px;
+    color: #ffffff;
+}
+
+.img_text_div02 h4{
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: 900;
+    color: #eb0009;
+    margin-bottom: 0px;
+}
+
+.land_item02 a{
+    color: #ffffff;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.land_item02:hover a{
+    color: #05a3d2;
+}
+
+.land_item02:hover .img_text_div02{
+    background: linear-gradient(to top,#00652e,transparent);
+}
