@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use App\Models\subCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +15,8 @@ class mainAdsDisplayController extends Controller
         switch ($id) {
             case '2':
                 // Logic for electronics
+
+                $subCategory =  subCategory::where('cat_id', $id)->get();
                 $ads = DB::table('ads')
                     ->where('ads.status', 1)
                     ->where('ads.cat_id', $id)
@@ -22,7 +25,7 @@ class mainAdsDisplayController extends Controller
                     ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
                     ->paginate(12);
 
-                return view('web.displayAdsMain.electronics', compact('ads'));
+                return view('web.displayAdsMain.electronics', compact('ads', 'subCategory'));
                 break;
 
             case '3':

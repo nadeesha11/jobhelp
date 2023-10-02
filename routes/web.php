@@ -16,6 +16,7 @@ use App\Http\Controllers\web\AdController;
 use App\Http\Controllers\web\contactUsController;
 use App\Http\Controllers\web\homeController;
 use App\Http\Controllers\web\mainAdsDisplayController;
+use App\Http\Controllers\web\mainFilterController;
 use App\Http\Controllers\web\paymentController;
 use App\Http\Controllers\web\userAuthController;
 use App\Http\Controllers\web\vendorDashBoardController;
@@ -34,8 +35,12 @@ Route::get('/ads/detailed/service{id}', [mainAdsDisplayController::class, 'detai
 Route::get('/ads/detailed/jobs{id}', [mainAdsDisplayController::class, 'detailedJobs'])->name('web.dashboard.jobs.detailed'); // display main ads with detailed jobs
 Route::get('/ads/detailed/education{id}', [mainAdsDisplayController::class, 'detailedEducation'])->name('web.dashboard.education.detailed'); // display main ads with detailed education
 
-// web.dashboard.education.detailed
+//main filters
+Route::get('/ads/electronics/filter/{id}', [mainFilterController::class, 'electronics'])->name('web.electronics.filters'); // display filter page electronics
+Route::post('/ads/electronics/filterd', [mainFilterController::class, 'electronicsFilterdRedirect'])->name('electronics.filterdAds'); // redirect filterd ads
+Route::get('/electronics/filterd/ads', [mainFilterController::class, 'electronicsFilterdDisplay'])->name('electronics.filterd.ads'); // filterd ads in electronics
 
+// web.dashboard.education.detailed
 Route::get('/', [homeController::class, 'index'])->name('web.index'); // web home 
 Route::get('/web/userForm', [userAuthController::class, 'userForm'])->name('web.userForm'); // web login register page for venders
 Route::post('/web/registerByOtp', [userAuthController::class, 'registerOTP'])->name('web.registerByOtp'); // to register and login venders and send otps
@@ -78,8 +83,6 @@ Route::group(['middleware' => ['vendorCheck']], function () {
     Route::post('web/payment/successFreePay', [paymentController::class, 'successFreePay'])->name('web.dashboard.successFreePay'); // send ajax payment data for free ads
     Route::post('web/payment/successPayAds', [paymentController::class, 'successPayAds'])->name('web.dashboard.successPayAds'); // send ajax payment data for pay ads
 });
-
-
 
 Route::get('/web/vendor/logout', [userAuthController::class, 'logout'])->name('web.vendor.logout'); // vendor logout
 

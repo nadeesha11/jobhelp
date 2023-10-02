@@ -47,10 +47,8 @@
                     <input type="hidden" value="{{ $category->id }}" name="category_id" id="hidden_category_id">
                     {{-- hidden input sublocation  --}}
 
-
                     {{-- this is testing reviwed by se  start --}}
                     <div class="row">
-
                         <div class="col-lg-6 col-12 ">
                             <div class="col-12 mt-2 ">
                                 <label for="exampleInputEmail1">Title</label>
@@ -120,7 +118,6 @@
                         </div>
 
                         <div class="col-lg-6 col-12 ">
-
                             <div class="col-12 mt-2 ">
                                 <label for="exampleInputPassword1">Price</label>
                                 <input type="number" class="form-control resetInput" id="price" name="price"
@@ -167,10 +164,10 @@
                             <div class="col-12 mt-2 ">
                                 <label>Condition</label><br>
                                 <label class="radio-inline m-2">
-                                    <input type="radio" name="condition" class="m-1" checked>New
+                                    <input type="radio" name="condition" value="1" class="m-1" checked>New
                                 </label>
                                 <label class="radio-inline m-2">
-                                    <input type="radio" name="condition" class="m-1">Used
+                                    <input type="radio" name="condition" value="0" class="m-1">Used
                                 </label>
                             </div>
 
