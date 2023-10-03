@@ -30,6 +30,7 @@ class mainAdsDisplayController extends Controller
 
             case '3':
                 // Logic for vehicle
+                $subCategory =  subCategory::where('cat_id', $id)->get();
                 $ads = DB::table('ads')
                     ->where('ads.status', 1)
                     ->where('ads.cat_id', $id)
@@ -37,11 +38,12 @@ class mainAdsDisplayController extends Controller
                     ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
                     ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
                     ->paginate(12);
-                return view('web.displayAdsMain.vehicles', compact('ads'));
+                return view('web.displayAdsMain.vehicles', compact('ads', 'subCategory'));
                 break;
 
             case '4':
                 // Logic for property
+                $subCategory =  subCategory::where('cat_id', $id)->get();
                 $ads = DB::table('ads')
                     ->where('ads.status', 1)
                     ->where('ads.cat_id', $id)
@@ -49,11 +51,12 @@ class mainAdsDisplayController extends Controller
                     ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
                     ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
                     ->paginate(12);
-                return view('web.displayAdsMain.property', compact('ads'));
+                return view('web.displayAdsMain.property', compact('ads', 'subCategory'));
                 break;
 
             case '5':
                 // Logic for service
+                $subCategory =  subCategory::where('cat_id', $id)->get();
                 $ads = DB::table('ads')
                     ->where('ads.status', 1)
                     ->where('ads.cat_id', $id)
@@ -61,7 +64,7 @@ class mainAdsDisplayController extends Controller
                     ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
                     ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
                     ->paginate(12);
-                return view('web.displayAdsMain.service', compact('ads'));
+                return view('web.displayAdsMain.service', compact('ads', 'subCategory'));
                 break;
 
             case '6':

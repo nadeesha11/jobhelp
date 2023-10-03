@@ -79,7 +79,6 @@
                     <input type="text" value="{{ $category->id }}" name="category_id" id="hidden_category_id">
                     {{-- hidden input sublocation  --}}
 
-
                     {{-- this is testing reviwed by se  start --}}
                     <div class="row">
 

@@ -17,13 +17,13 @@
                                     class="product-widget-form">
                                     @csrf
                                     <div class="product-widget-group">
-                                        <input required name="min"
+                                        <input name="min"
                                             value="{{ session('electronics_filter_data')['min'] ?? null }}" type="text"
                                             placeholder="min">
-                                        <input required name="max"
+                                        <input name="max"
                                             value="{{ session('electronics_filter_data')['max'] ?? null }}" type="text"
                                             placeholder="max">
-                                        <input name="subCat" type="hidden" value="{{ $id }}">
+                                        <input name="subCat" type="text" value="{{ $id }}">
                                     </div>
                                     <button type="submit" class="product-widget-btn">
                                         <i class="fas fa-search"></i>

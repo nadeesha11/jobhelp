@@ -1,7 +1,10 @@
 @extends('web.layout.webLayout')
 @section('content')
-    <!--=====================================
-                                 =======================================-->
+    <style>
+        .product-card {
+            cursor: pointer !important;
+        }
+    </style>
     <section class="inner-section ad-list-part">
         <div class="container">
             <div class="row content-reverse">
@@ -9,18 +12,66 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-12">
                             <div class="product-widget">
-                                <h6 class="product-widget-title">filter by category</h6>
-                                <form class="product-widget-form">
-                                    <ul class="product-widget-list ">
-                                        @foreach ($subCategory as $item)
-                                            <li class="product-widget-dropitem">
-                                                <a href="{{ route('web.vehicles.filters', ['id' => $item->id]) }}"
-                                                    class="product-widget-link">
-                                                    {{ $item->sub_cat_name }}
-                                                </a>
-                                            </li>
-                                        @endforeach
+                                <h6 class="product-widget-title">Filter by Price</h6>
+                                <form method="POST" action="{{ route('vehicles.filterdAds') }}" class="product-widget-form">
+                                    @csrf
+                                    <div class="product-widget-group">
+                                        <input name="min" type="text"
+                                            value="{{ session('vehicle_filter_data')['min'] ?? null }}" placeholder="min">
+                                        <input name="max" type="text"
+                                            value="{{ session('vehicle_filter_data')['max'] ?? null }}" placeholder="max">
+                                        <input name="subCat" type="text" value="{{ $id }}">
+                                    </div>
+                                    <button type="submit" class="product-widget-btn">
+                                        <i class="fas fa-search"></i>
+                                        <span>search</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-12">
+                            <div class="product-widget">
+                                <h6 class="product-widget-title">Filter by condition</h6>
+                                <form method="POST" action="{{ route('vehicles.filterdAds') }}"
+                                    class="product-widget-form">
+                                    @csrf
+                                    <input name="subCat" type="text" value="{{ $id }}">
+                                    <ul class="product-widget-list">
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input
+                                                    @if (null !== session('vehicle_filter_data.New')) checked @endif type="checkbox"
+                                                    value="New" name="New" id="chcek1">
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span class="product-widget-type rent ">New</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox"
+                                                    @if (null !== session('vehicle_filter_data.Used')) checked @endif value="Used"
+                                                    name="Used" id="chcek1">
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span style="background-color: rgb(85, 130, 182) !important;"
+                                                    class="product-widget-type rent ">Used</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"> <input
+                                                    @if (null !== session('vehicle_filter_data.Reconditioned')) checked @endif type="checkbox"
+                                                    value="Reconditioned" name="Reconditioned" id="chcek2">
+
+                                            </div>
+                                            <label class="product-widget-label" for="chcek2">
+                                                <span class="product-widget-type sale">Reconditioned</span>
+                                            </label>
+                                        </li>
                                     </ul>
+                                    <button type="submit" class="product-widget-btn">
+                                        <i class="fas fa-search"></i>
+                                        <span>search</span>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -165,67 +216,61 @@
 
 
                     <div data-item="8" data-item-show="4" class="row ad-standard">
-                        @foreach ($ads as $item)
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <div onclick="getId({{ $item->id }});" class="product-card standard">
-                                    <a href="#">
-                                        <div class="product-media">
-                                            <div class="product-img">
-                                                <img style="height: 200px !important; object-fit:contain !important;"
-                                                    src="{{ asset('ad_image/main_image/' . $item->ads_main_image) }}"
-                                                    alt="product">
+                        @if (count($ads) == 0)
+                            <p>There is no ads</p>
+                        @else
+                            @foreach ($ads as $item)
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div onclick="getId({{ $item->id }});" class="product-card standard">
+                                        <a href="#">
+                                            <div class="product-media">
+                                                <div class="product-img">
+                                                    <img style="height: 200px !important; object-fit:contain !important;"
+                                                        src="{{ asset('ad_image/main_image/' . $item->ads_main_image) }}"
+                                                        alt="product">
+                                                </div>
+                                                <div class="product-type">
+                                                    <span class="flat-badge sale">urgent</span>
+                                                </div>
                                             </div>
-                                            <div class="product-type">
-                                                <span class="flat-badge sale">urgent</span>
+                                            <div class="product-content">
+                                                <ol class="breadcrumb product-category">
+                                                    <li><i class="fas fa-tags"></i></li>
+                                                    <li class="breadcrumb-item">{{ $item->subCatName }}</li>
+                                                </ol>
+                                                <h5 class="product-title">
+                                                    <a href="#">{{ $item->ads_title }}</a>
+                                                </h5>
+                                                <div class="product-meta">
+                                                    <span><i class="fas fa-map-marker-alt"></i>{{ $item->ads_location }},
+                                                        {{ $item->ads_sublocation }}</span>
+                                                    <span><i class="fas fa-clock"></i>
+                                                        {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
+                                                </div>
+                                                <div class="product-info">
+                                                    <h5 class="product-price">Rs.
+                                                        {{ number_format($item->ads_price, 2, '.', '') }}
+                                                        <span></span>
+                                                    </h5>
+                                                </div>
                                             </div>
-                                            {{-- <ul class="product-action">
-                                            <li class="view"><i class="fas fa-eye"></i><span>264</span></li>
-                                            <li class="click"><i class="fas fa-mouse"></i><span>134</span></li>
-                                            <li class="rating"><i class="fas fa-star"></i><span>4.5/7</span></li>
-                                        </ul> --}}
-                                        </div>
-                                        <div class="product-content">
-                                            {{-- <ol class="breadcrumb product-category">
-                                            <li><i class="fas fa-tags"></i></li>
-                                            <li class="breadcrumb-item"><a href="#">gadget</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">camera</li>
-                                        </ol> --}}
-                                            <h5 class="product-title">
-                                                <a href="#">{{ $item->ads_title }}</a>
-                                            </h5>
-                                            <div class="product-meta">
-                                                <span><i class="fas fa-map-marker-alt"></i>{{ $item->ads_location }},
-                                                    {{ $item->ads_sublocation }}</span>
-                                                <span><i class="fas fa-clock"></i>
-                                                    {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
-                                            </div>
-                                            {{-- <div class="product-info">
-                                            <h5 class="product-price">Rs. {{ number_format($item->ads_price, 2, '.', '') }}
-                                                <span></span>
-                                            </h5>
-                                            <div class="product-btn">
-                                                <a href="compare.html" title="Compare" class="fas fa-compress"></a>
-                                                <button type="button" title="Wishlist" class="far fa-heart"></button>
-                                            </div>
-                                        </div> --}}
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @endif
                     </div>
                     {!! $ads->withQueryString()->links('pagination::bootstrap-5') !!}
+
                 </div>
             </div>
         </div>
     </section>
-    <!--=====================================
-                                                                                                   AD LIST PART END  =======================================-->
 
     <script>
         function getId(id) {
 
-            var url = '{{ route('web.dashboard.vehicle.detailed', ':slug') }}';
+            var url = '{{ route('web.dashboard.electronic.detailed', ':slug') }}';
             url = url.replace(':slug', id);
             window.location.href = url;
         }

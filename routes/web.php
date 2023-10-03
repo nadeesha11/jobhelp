@@ -35,10 +35,26 @@ Route::get('/ads/detailed/service{id}', [mainAdsDisplayController::class, 'detai
 Route::get('/ads/detailed/jobs{id}', [mainAdsDisplayController::class, 'detailedJobs'])->name('web.dashboard.jobs.detailed'); // display main ads with detailed jobs
 Route::get('/ads/detailed/education{id}', [mainAdsDisplayController::class, 'detailedEducation'])->name('web.dashboard.education.detailed'); // display main ads with detailed education
 
-//main filters
+//main filters for electronics
 Route::get('/ads/electronics/filter/{id}', [mainFilterController::class, 'electronics'])->name('web.electronics.filters'); // display filter page electronics
 Route::post('/ads/electronics/filterd', [mainFilterController::class, 'electronicsFilterdRedirect'])->name('electronics.filterdAds'); // redirect filterd ads
 Route::get('/electronics/filterd/ads', [mainFilterController::class, 'electronicsFilterdDisplay'])->name('electronics.filterd.ads'); // filterd ads in electronics
+
+//main filters for vehicles
+Route::get('/ads/vehicles/filter/{id}', [mainFilterController::class, 'vehicles'])->name('web.vehicles.filters'); // display filter page vehicles
+Route::post('/ads/vehicles/filterd', [mainFilterController::class, 'vehiclesFilterdRedirect'])->name('vehicles.filterdAds'); // redirect filterd ads
+Route::get('/vehicles/filterd/ads', [mainFilterController::class, 'vehiclesFilterdDisplay'])->name('vehicles.filterd.ads'); // filterd ads in vehicles
+
+//main filters for property
+Route::get('/ads/property/filter/{id}', [mainFilterController::class, 'property'])->name('web.property.filters'); // display filter page property
+Route::post('/ads/property/filterd', [mainFilterController::class, 'propertyFilterdRedirect'])->name('property.filterdAds'); // redirect filterd ads
+Route::get('/property/filterd/ads', [mainFilterController::class, 'propertyFilterdDisplay'])->name('property.filterd.ads'); // filterd ads in property
+
+//main filters for service
+Route::get('/ads/service/filter/{id}', [mainFilterController::class, 'service'])->name('web.service.filters'); // display filter page filters
+Route::post('/ads/service/filterd', [mainFilterController::class, 'serviceFilterdRedirect'])->name('service.filterdAds'); // redirect filterd ads
+
+// service.filterdAds
 
 // web.dashboard.education.detailed
 Route::get('/', [homeController::class, 'index'])->name('web.index'); // web home 
