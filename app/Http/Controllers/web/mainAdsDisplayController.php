@@ -69,18 +69,21 @@ class mainAdsDisplayController extends Controller
 
             case '6':
                 // Logic for jobs
+                $subCategory =  subCategory::where('cat_id', $id)->get();
                 $ads = DB::table('ads')
                     ->where('ads.status', 1)
                     ->where('ads.cat_id', $id)
                     ->orderBy('ads.id', 'desc')
                     ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
-                    ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
+                    ->join('jobs', 'ads.id', '=', 'jobs.ads_id')
+                    ->select('ads.*', 'subcategory.sub_cat_name as subCatName', 'jobs.sallary_start_from', 'jobs.sallary_start_to')
                     ->paginate(12);
-                return view('web.displayAdsMain.jobs', compact('ads'));
+                return view('web.displayAdsMain.jobs', compact('ads', 'subCategory'));
                 break;
 
             case '7':
                 // Logic for education
+                $subCategory =  subCategory::where('cat_id', $id)->get();
                 $ads = DB::table('ads')
                     ->where('ads.status', 1)
                     ->where('ads.cat_id', $id)
@@ -88,7 +91,7 @@ class mainAdsDisplayController extends Controller
                     ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
                     ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
                     ->paginate(12);
-                return view('web.displayAdsMain.education', compact('ads'));
+                return view('web.displayAdsMain.education', compact('ads', 'subCategory'));
                 break;
 
             default:

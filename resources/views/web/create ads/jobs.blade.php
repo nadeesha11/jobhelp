@@ -55,25 +55,20 @@
                     <input type="text" value="{{ $userData->id }}" name="user_id" id="hidden_user_id">
                     <input type="text" value="{{ $subCategory->id }}" name="sub_category_id" id="hidden_sub_category_id">
                     <input type="text" value="{{ $category->id }}" name="category_id" id="hidden_category_id">
+                    <input type="hidden" class="form-control inputCustom" value="1000" id="price" name="price"
+                        placeholder="Enter price">
+                    <span class="text-danger error" id="price_error"></span>
+                    {{-- that price not needed to jobs --}}
                     {{-- hidden input sublocation  --}}
 
                     <div class="row">
 
-                        <div class="col-lg-6 col-12 ">
+                        <div class="col-lg-12 col-12 ">
                             <div class="col-12 mt-2 ">
                                 <label for="exampleInputEmail1">Title *</label>
                                 <input type="text" class="form-control inputCustom" id="title" name="title"
                                     placeholder="Enter title">
                                 <span class="text-danger error" id="title_error"></span>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-12 ">
-                            <div class="col-12 mt-2 ">
-                                <label for="exampleInputPassword1">Price *</label>
-                                <input type="number" class="form-control inputCustom" id="price" name="price"
-                                    placeholder="Enter price">
-                                <span class="text-danger error" id="price_error"></span>
                             </div>
                         </div>
 
@@ -154,7 +149,7 @@
                     <div class="row ">
                         <div class="col-12 col-lg-6 mt-2 ">
                             <div class="col-12 mt-2 ">
-                                <label for="exampleInputEmail1">Sallary Start To *</label>
+                                <label for="exampleInputEmail1">Sallary Start From *</label>
                                 <input type="text" class="form-control inputCustom"
                                     placeholder="Enter Maximum Sallary" id="sallary_start_to" name="sallary_start_to">
                                 <span class="text-danger error" id="sallary_start_to_error"></span>
@@ -163,7 +158,7 @@
 
                         <div class="col-12 col-lg-6 mt-2 ">
                             <div class="col-12 mt-2 ">
-                                <label for="exampleInputEmail1">Sallary Start From *</label>
+                                <label for="exampleInputEmail1">Sallary Start To *</label>
                                 <input type="text" class="form-control inputCustom"
                                     placeholder="Enter Minimum Sallary" id="sallary_start_from"
                                     name="sallary_start_from">

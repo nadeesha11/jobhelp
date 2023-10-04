@@ -1,14 +1,30 @@
 @extends('web.layout.webLayout')
 @section('content')
     <!--=====================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    AD LIST PART START
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        =======================================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            AD LIST PART START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                =======================================-->
     <section class="inner-section ad-list-part">
         <div class="container">
             <div class="row content-reverse">
                 <div class="col-lg-4 col-xl-3">
                     <div class="row">
-
+                        <div class="col-md-6 col-lg-12">
+                            <div class="product-widget">
+                                <h6 class="product-widget-title">filter by category</h6>
+                                <form class="product-widget-form">
+                                    <ul class="product-widget-list ">
+                                        @foreach ($subCategory as $item)
+                                            <li class="product-widget-dropitem">
+                                                <a href="{{ route('web.education.filters', ['id' => $item->id]) }}"
+                                                    class="product-widget-link">
+                                                    {{ $item->sub_cat_name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-8 col-xl-9">

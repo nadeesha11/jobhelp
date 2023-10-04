@@ -1,7 +1,10 @@
 @extends('web.layout.webLayout')
 @section('content')
-    <!--=====================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            AD LIST PART START                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                =======================================-->
+    <style>
+        .product-card {
+            cursor: pointer !important;
+        }
+    </style>
     <section class="inner-section ad-list-part">
         <div class="container">
             <div class="row content-reverse">
@@ -9,22 +12,23 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-12">
                             <div class="product-widget">
-                                <h6 class="product-widget-title">filter by category</h6>
-                                <form class="product-widget-form">
-                                    <ul class="product-widget-list ">
-                                        @foreach ($subCategory as $item)
-                                            <li class="product-widget-dropitem">
-                                                <a href="{{ route('web.jobs.filters', ['id' => $item->id]) }}"
-                                                    class="product-widget-link">
-                                                    {{ $item->sub_cat_name }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                <h6 class="product-widget-title">Filter by Price</h6>
+                                <form method="POST" action="{{ route('education.filterdAds') }}" class="product-widget-form">
+                                    @csrf
+                                    <div class="product-widget-group">
+                                        <input name="min" value="{{ session('education_filter_data')['min'] ?? null }}"
+                                            type="text" placeholder="min">
+                                        <input name="max" value="{{ session('education_filter_data')['max'] ?? null }}"
+                                            type="text" placeholder="max">
+                                        <input name="subCat" type="text" value="{{ $id }}">
+                                    </div>
+                                    <button type="submit" class="product-widget-btn">
+                                        <i class="fas fa-search"></i>
+                                        <span>search</span>
+                                    </button>
                                 </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-lg-8 col-xl-9">
@@ -166,50 +170,49 @@
 
 
                     <div data-item="8" data-item-show="4" class="row ad-standard">
-                        @foreach ($ads as $item)
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <div onclick="getId({{ $item->id }});" class="product-card standard">
-                                    <a href="#">
-                                        <div class="product-media">
-                                            <div class="product-img">
-                                                <img style="height: 200px !important; object-fit:contain !important;"
-                                                    src="{{ asset('ad_image/main_image/' . $item->ads_main_image) }}"
-                                                    alt="product">
+                        @if (count($ads) == 0)
+                            <p>There is no ads</p>
+                        @else
+                            @foreach ($ads as $item)
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <div onclick="getId({{ $item->id }});" class="product-card standard">
+                                        <a href="#">
+                                            <div class="product-media">
+                                                <div class="product-img">
+                                                    <img style="height: 200px !important; object-fit:contain !important;"
+                                                        src="{{ asset('ad_image/main_image/' . $item->ads_main_image) }}"
+                                                        alt="product">
+                                                </div>
+                                                <div class="product-type">
+                                                    <span class="flat-badge sale">urgent</span>
+                                                </div>
                                             </div>
-
-                                            <div class="product-type">
-                                                <span class="flat-badge sale">urgent</span>
-                                            </div>
-
-                                        </div>
-                                        <div class="product-content">
-                                            <ol class="breadcrumb product-category">
-                                                <li><i class="fas fa-tags"></i></li>
-                                                <li class="breadcrumb-item">{{ $item->subCatName }}</li>
-
-                                            </ol>
-                                            <h5 class="product-title">
-                                                <a href="#">{{ $item->ads_title }}</a>
-                                            </h5>
-                                            <div class="product-meta">
-                                                <span><i class="fas fa-map-marker-alt"></i>{{ $item->ads_location }},
-                                                    {{ $item->ads_sublocation }}</span>
-                                                <span><i class="fas fa-clock"></i>
-                                                    {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
-                                            </div>
-                                            <div class="product-info">
-                                                <h5 class="product-price">Sallary From Rs.
-                                                    {{ number_format($item->sallary_start_to, 2, '.', '') }} to
-                                                    {{ number_format($item->sallary_start_from, 2, '.', '') }}
-                                                    <span></span>
+                                            <div class="product-content">
+                                                <ol class="breadcrumb product-category">
+                                                    <li><i class="fas fa-tags"></i></li>
+                                                    <li class="breadcrumb-item">{{ $item->subCatName }}</li>
+                                                </ol>
+                                                <h5 class="product-title">
+                                                    <a href="#">{{ $item->ads_title }}</a>
                                                 </h5>
-
+                                                <div class="product-meta">
+                                                    <span><i class="fas fa-map-marker-alt"></i>{{ $item->ads_location }},
+                                                        {{ $item->ads_sublocation }}</span>
+                                                    <span><i class="fas fa-clock"></i>
+                                                        {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
+                                                </div>
+                                                <div class="product-info">
+                                                    <h5 class="product-price">Rs.
+                                                        {{ number_format($item->ads_price, 2, '.', '') }}
+                                                        <span></span>
+                                                    </h5>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @endif
                     </div>
                     {!! $ads->withQueryString()->links('pagination::bootstrap-5') !!}
 
@@ -217,10 +220,11 @@
             </div>
         </div>
     </section>
+
     <script>
         function getId(id) {
 
-            var url = '{{ route('web.dashboard.jobs.detailed', ':slug') }}';
+            var url = '{{ route('web.dashboard.electronic.detailed', ':slug') }}';
             url = url.replace(':slug', id);
             window.location.href = url;
         }

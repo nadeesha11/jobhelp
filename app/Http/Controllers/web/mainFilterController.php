@@ -250,7 +250,309 @@ class mainFilterController extends Controller
 
     public function serviceFilterdRedirect(Request $request)
     {
-        // this should be tomorrow tasks
+        $oldFilterDataService = session('service_filter_data', []); // get old session data
+        session([
+            'service_filter_data' => [
+                'min' => $request->min ?? ($oldFilterDataService['min'] ?? null),
+                'max' => $request->max ?? ($oldFilterDataService['max'] ?? null),
+                'subCat' => $request->subCat,
+            ]
+        ]);
+
+        return redirect()->route('service.filterd.ads');
+    }
+
+    public function serviceFilterdDisplay()
+    {
+        $serviceFilterData = session('service_filter_data', []);
+
+        $adsQuery = DB::table('ads')
+            ->where('ads.status', 1)
+            ->where('ads.cat_id', 5);
+
+        if (isset($serviceFilterData['subCat'])) {
+            $adsQuery->where('ads.sub_cat_id', $serviceFilterData['subCat']);
+        }
+
+        if (isset($serviceFilterData['min'])) {
+            $adsQuery->where('ads.ads_price', '>=', $serviceFilterData['min']);
+        }
+
+        if (isset($serviceFilterData['max'])) {
+            $adsQuery->where('ads.ads_price', '<=', $serviceFilterData['max']);
+        }
+
+        $ads = $adsQuery
+            ->orderBy('ads.id', 'desc')
+            ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
+            ->join('services', 'ads.id', '=', 'services.ads_id')
+            ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
+            ->paginate(12);
+
+        $id = $serviceFilterData['subCat']; // pass subcat values
+
+        return view('web.displayAdsFilters.service', compact('ads', 'id'));
     }
     // *** for develop service category function  ^^^^
+
+    // *** for develop jobs category function  ^^^^
+
+    public function jobs($id)
+    {    // Forget a specific session variable
+        session()->forget('jobs_filter_data');
+
+        $ads = DB::table('ads')
+            ->where('ads.status', 1)
+            ->where('ads.cat_id', 6)
+            ->where('ads.sub_cat_id', $id)
+            ->orderBy('ads.id', 'desc')
+            ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
+            ->join('jobs', 'ads.id', '=', 'jobs.ads_id')
+            ->select('ads.*', 'subcategory.sub_cat_name as subCatName', 'jobs.sallary_start_from', 'jobs.sallary_start_to')
+            ->paginate(12);
+
+        return view('web.displayAdsFilters.jobs', compact('ads', 'id'));
+    }
+
+    public function jobsFilterdRedirect(Request $request)
+    {
+        $oldFilterDataJobs = session('jobs_filter_data', []); // get old session data
+        session([
+            'jobs_filter_data' => [
+                'min' => $request->min ?? ($oldFilterDataJobs['min'] ?? null),
+                'max' => $request->max ?? ($oldFilterDataJobs['max'] ?? null),
+                'subCat' => $request->subCat,
+                // work expirience
+                'experience_1' => $request->experience_1 ?? null,
+                'experience_2' => $request->experience_2 ?? null,
+                'experience_3' => $request->experience_3 ?? null,
+                'experience_4' => $request->experience_4 ?? null,
+                'experience_5' => $request->experience_5 ?? null,
+                'experience_6' => $request->experience_6 ?? null,
+                'experience_7' => $request->experience_7 ?? null,
+                'experience_8' => $request->experience_8 ?? null,
+                'experience_9' => $request->experience_9 ?? null,
+                'experience_10' => $request->experience_10 ??  null,
+                'experience_more_than_10' => $request->experience_more_than_10 ?? null,
+                // education
+                'Skilled_Apprentice' => $request->Skilled_Apprentice ?? null,
+                'Docterate' => $request->Docterate ?? null,
+                'Masters' => $request->Masters ?? null,
+                'Degree' => $request->Degree ?? null,
+                'Higher_Diploma' => $request->Higher_Diploma ?? null,
+                'Diploma' => $request->Diploma ?? null,
+                'Certificate' => $request->Certificate ?? null,
+                'Advanced_Level' => $request->Advanced_Level ?? null,
+                'Ordinary_Level' => $request->Ordinary_Level ?? null,
+                // type
+                'Full_Time' => $request->Full_Time ?? null,
+                'Part_Time' => $request->Part_Time ?? null,
+                'Temporary' => $request->Temporary ?? null,
+                'Internship' => $request->Internship ?? null,
+                'Contractual' => $request->Contractual ?? null,
+            ]
+        ]);
+
+        return redirect()->route('jobs.filterd.ads');
+    }
+
+    public function jobsFilterdDisplay()
+    {
+        $jobsFilterData = session('jobs_filter_data', []);
+
+        $experienceValues = []; // store expirience in a aarray
+        if (isset($jobsFilterData['experience_1'])) {
+            $experienceValues[] = $jobsFilterData['experience_1'];
+        }
+
+        if (isset($jobsFilterData['experience_2'])) {
+            $experienceValues[] = $jobsFilterData['experience_2'];
+        }
+        if (isset($jobsFilterData['experience_3'])) {
+            $experienceValues[] = $jobsFilterData['experience_3'];
+        }
+
+        if (isset($jobsFilterData['experience_4'])) {
+            $experienceValues[] = $jobsFilterData['experience_4'];
+        }
+        if (isset($jobsFilterData['experience_5'])) {
+            $experienceValues[] = $jobsFilterData['experience_5'];
+        }
+
+        if (isset($jobsFilterData['experience_6'])) {
+            $experienceValues[] = $jobsFilterData['experience_6'];
+        }
+        if (isset($jobsFilterData['experience_7'])) {
+            $experienceValues[] = $jobsFilterData['experience_7'];
+        }
+
+        if (isset($jobsFilterData['experience_8'])) {
+            $experienceValues[] = $jobsFilterData['experience_8'];
+        }
+        if (isset($jobsFilterData['experience_9'])) {
+            $experienceValues[] = $jobsFilterData['experience_9'];
+        }
+
+        if (isset($jobsFilterData['experience_10'])) {
+            $experienceValues[] = $jobsFilterData['experience_10'];
+        }
+        if (isset($jobsFilterData['experience_more_than_10'])) {
+            $experienceValues[] = $jobsFilterData['experience_more_than_10'];
+        }
+
+        $educationValues = []; // store education in a aarray
+        if (isset($jobsFilterData['Ordinary_Level'])) {
+            $educationValues[] = $jobsFilterData['Ordinary_Level'];
+        }
+
+        if (isset($jobsFilterData['Advanced_Level'])) {
+            $educationValues[] = $jobsFilterData['Advanced_Level'];
+        }
+        if (isset($jobsFilterData['Certificate'])) {
+            $educationValues[] = $jobsFilterData['Certificate'];
+        }
+
+        if (isset($jobsFilterData['Diploma'])) {
+            $educationValues[] = $jobsFilterData['Diploma'];
+        }
+        if (isset($jobsFilterData['Higher_Diploma'])) {
+            $educationValues[] = $jobsFilterData['Higher_Diploma'];
+        }
+
+        if (isset($jobsFilterData['Degree'])) {
+            $educationValues[] = $jobsFilterData['Degree'];
+        }
+        if (isset($jobsFilterData['Masters'])) {
+            $educationValues[] = $jobsFilterData['Masters'];
+        }
+
+        if (isset($jobsFilterData['Docterate'])) {
+            $educationValues[] = $jobsFilterData['Docterate'];
+        }
+        if (isset($jobsFilterData['Skilled_Apprentice'])) {
+            $educationValues[] = $jobsFilterData['Skilled_Apprentice'];
+        }
+
+        $jobTypeValues = []; // store job type in a array
+        if (isset($jobsFilterData['Full_Time'])) {
+            $jobTypeValues[] = $jobsFilterData['Full_Time'];
+        }
+        if (isset($jobsFilterData['Part_Time'])) {
+            $jobTypeValues[] = $jobsFilterData['Part_Time'];
+        }
+        if (isset($jobsFilterData['Temporary'])) {
+            $jobTypeValues[] = $jobsFilterData['Temporary'];
+        }
+        if (isset($jobsFilterData['Internship'])) {
+            $jobTypeValues[] = $jobsFilterData['Internship'];
+        }
+        if (isset($jobsFilterData['Contractual'])) {
+            $jobTypeValues[] = $jobsFilterData['Contractual'];
+        }
+
+
+        $adsQuery = DB::table('ads')
+            ->where('ads.status', 1)
+            ->where('ads.cat_id', 6);
+
+        if (isset($jobsFilterData['subCat'])) {
+            $adsQuery->where('ads.sub_cat_id', $jobsFilterData['subCat']);
+        }
+
+        if (isset($jobsFilterData['min'])) {
+            $adsQuery->where('jobs.sallary_start_to', '>=', $jobsFilterData['min']);
+        }
+
+        if (isset($jobsFilterData['max'])) {
+            $adsQuery->where('jobs.sallary_start_from', '<=', $jobsFilterData['max']);
+        }
+        if (!empty($experienceValues)) {
+            $adsQuery->whereIn('jobs.job_work_expirience', $experienceValues);
+        }
+        if (!empty($educationValues)) {
+            $adsQuery->whereIn('jobs.job_education', $educationValues);
+        }
+        if (!empty($jobTypeValues)) {
+            $adsQuery->whereIn('jobs.jobType', $jobTypeValues);
+        }
+
+        $ads = $adsQuery
+            ->orderBy('ads.id', 'desc')
+            ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
+            ->join('jobs', 'ads.id', '=', 'jobs.ads_id')
+            ->select('ads.*', 'subcategory.sub_cat_name as subCatName', 'jobs.sallary_start_from', 'jobs.sallary_start_to')
+            ->paginate(12);
+
+
+        $id = $jobsFilterData['subCat']; // pass subcat values
+
+        return view('web.displayAdsFilters.jobs', compact('ads', 'id'));
+    }
+    // *** for develop jobs category function  ^^^^
+
+
+    // *** for develop jobs category function  ^^^^
+    public function education($id)
+    {
+        session()->forget('education_filter_data');
+
+        $ads = DB::table('ads')
+            ->where('ads.status', 1)
+            ->where('ads.cat_id', 7)
+            ->where('ads.sub_cat_id', $id)
+            ->orderBy('ads.id', 'desc')
+            ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
+            ->join('educations', 'ads.id', '=', 'educations.ads_id')
+            ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
+            ->paginate(12);
+
+        return view('web.displayAdsFilters.education', compact('ads', 'id'));
+    }
+
+    public function educationFilterdRedirect(Request $request)
+    {
+        $oldFilterDataEducation = session('education_filter_data', []); // get old session data
+        session([
+            'education_filter_data' => [
+                'min' => $request->min ?? ($oldFilterDataEducation['min'] ?? null),
+                'max' => $request->max ?? ($oldFilterDataEducation['max'] ?? null),
+                'subCat' => $request->subCat,
+
+            ]
+        ]);
+
+        return redirect()->route('education.filterd.ads');
+    }
+
+    public function educationFilterdDisplay()
+    {
+        $educationFilterData = session('education_filter_data', []);
+
+        $adsQuery = DB::table('ads')
+            ->where('ads.status', 1)
+            ->where('ads.cat_id', 7);
+
+        if (isset($educationFilterData['subCat'])) {
+            $adsQuery->where('ads.sub_cat_id', $educationFilterData['subCat']);
+        }
+
+        if (isset($educationFilterData['min'])) {
+            $adsQuery->where('ads.ads_price', '>=', $educationFilterData['min']);
+        }
+
+        if (isset($educationFilterData['max'])) {
+            $adsQuery->where('ads.ads_price', '<=', $educationFilterData['max']);
+        }
+
+        $ads = $adsQuery
+            ->orderBy('ads.id', 'desc')
+            ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
+            ->join('educations', 'ads.id', '=', 'educations.ads_id')
+            ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
+            ->paginate(12);
+
+        $id = $educationFilterData['subCat']; // pass subcat values
+
+        return view('web.displayAdsFilters.education', compact('ads', 'id'));
+    }
 }
