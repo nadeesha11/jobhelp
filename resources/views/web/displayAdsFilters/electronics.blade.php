@@ -23,7 +23,7 @@
                                         <input name="max"
                                             value="{{ session('electronics_filter_data')['max'] ?? null }}" type="text"
                                             placeholder="max">
-                                        <input name="subCat" type="text" value="{{ $id }}">
+                                        <input type="hidden" name="subCat" type="text" value="{{ $id }}">
                                     </div>
                                     <button type="submit" class="product-widget-btn">
                                         <i class="fas fa-search"></i>
@@ -39,10 +39,21 @@
                                 <form method="POST" action="{{ route('electronics.filterdAds') }}"
                                     class="product-widget-form">
                                     @csrf
+                                    <input type="hidden" name="subCat" type="text" value="{{ $id }}">
+
+                                    {{-- send max min data with condition start --}}
+                                    <input name="min" type="hidden"
+                                        value="{{ session('electronics_filter_data')['min'] ?? null }}" type="text"
+                                        placeholder="min">
+                                    <input name="max" type="hidden"
+                                        value="{{ session('electronics_filter_data')['max'] ?? null }}" type="text"
+                                        placeholder="max">
+                                    {{-- send max min data with condition start --}}
+
                                     <ul class="product-widget-list">
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"><input type="checkbox" value="1"
-                                                    name="new" id="chcek1"
+                                                    name="new" id="chcek1" class="condition"
                                                     @if (null !== session('electronics_filter_data.new')) checked @endif>
 
                                             </div>
@@ -52,7 +63,7 @@
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="0"
-                                                    name="used" id="chcek2"
+                                                    class="condition" name="used" id="chcek2"
                                                     @if (null !== session('electronics_filter_data.used')) checked @endif>
 
                                             </div>
@@ -68,6 +79,7 @@
                                 </form>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-lg-8 col-xl-9">
@@ -75,12 +87,8 @@
                         <div class="col-lg-12">
                             <div class="header-filter">
                                 <div class="filter-show">
-                                    <label class="filter-label">Show :</label>
-                                    <select class="custom-select filter-select">
-                                        <option value="1">12</option>
-                                        <option value="2">24</option>
-                                        <option value="3">36</option>
-                                    </select>
+                                    <a href="{{ route('ads.displaymain.ads', ['id' => $cat_id]) }}">Back to all electronics
+                                    </a>
                                 </div>
                                 <div class="filter-short">
                                     <label class="filter-label">Short by :</label>

@@ -20,7 +20,7 @@
                                             value="{{ session('vehicle_filter_data')['min'] ?? null }}" placeholder="min">
                                         <input name="max" type="text"
                                             value="{{ session('vehicle_filter_data')['max'] ?? null }}" placeholder="max">
-                                        <input name="subCat" type="text" value="{{ $id }}">
+                                        <input type="hidden" name="subCat" type="text" value="{{ $id }}">
                                     </div>
                                     <button type="submit" class="product-widget-btn">
                                         <i class="fas fa-search"></i>
@@ -30,51 +30,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-lg-12">
-                            <div class="product-widget">
-                                <h6 class="product-widget-title">Filter by condition</h6>
-                                <form method="POST" action="{{ route('vehicles.filterdAds') }}"
-                                    class="product-widget-form">
-                                    @csrf
-                                    <input name="subCat" type="text" value="{{ $id }}">
-                                    <ul class="product-widget-list">
-                                        <li class="product-widget-item">
-                                            <div class="product-widget-checkbox"><input
-                                                    @if (null !== session('vehicle_filter_data.New')) checked @endif type="checkbox"
-                                                    value="New" name="New" id="chcek1">
-                                            </div>
-                                            <label class="product-widget-label" for="chcek1">
-                                                <span class="product-widget-type rent ">New</span>
-                                            </label>
-                                        </li>
-                                        <li class="product-widget-item">
-                                            <div class="product-widget-checkbox"><input type="checkbox"
-                                                    @if (null !== session('vehicle_filter_data.Used')) checked @endif value="Used"
-                                                    name="Used" id="chcek1">
-                                            </div>
-                                            <label class="product-widget-label" for="chcek1">
-                                                <span style="background-color: rgb(85, 130, 182) !important;"
-                                                    class="product-widget-type rent ">Used</span>
-                                            </label>
-                                        </li>
-                                        <li class="product-widget-item">
-                                            <div class="product-widget-checkbox"> <input
-                                                    @if (null !== session('vehicle_filter_data.Reconditioned')) checked @endif type="checkbox"
-                                                    value="Reconditioned" name="Reconditioned" id="chcek2">
 
-                                            </div>
-                                            <label class="product-widget-label" for="chcek2">
-                                                <span class="product-widget-type sale">Reconditioned</span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                    <button type="submit" class="product-widget-btn">
-                                        <i class="fas fa-search"></i>
-                                        <span>search</span>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-8 col-xl-9">
@@ -82,12 +38,10 @@
                         <div class="col-lg-12">
                             <div class="header-filter">
                                 <div class="filter-show">
-                                    <label class="filter-label">Show :</label>
-                                    <select class="custom-select filter-select">
-                                        <option value="1">12</option>
-                                        <option value="2">24</option>
-                                        <option value="3">36</option>
-                                    </select>
+                                    <div class="filter-show">
+                                        <a href="{{ route('ads.displaymain.ads', ['id' => $cat_id]) }}">Back to vehicles
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="filter-short">
                                     <label class="filter-label">Short by :</label>
@@ -270,7 +224,7 @@
     <script>
         function getId(id) {
 
-            var url = '{{ route('web.dashboard.electronic.detailed', ':slug') }}';
+            var url = '{{ route('web.dashboard.vehicle.detailed', ':slug') }}';
             url = url.replace(':slug', id);
             window.location.href = url;
         }

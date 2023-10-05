@@ -20,7 +20,7 @@
                                             type="text" placeholder="min">
                                         <input name="max" value="{{ session('jobs_filter_data')['max'] ?? null }}"
                                             type="text" placeholder="max">
-                                        <input name="subCat" type="text" value="{{ $id }}">
+                                        <input name="subCat" type="hidden" value="{{ $id }}">
                                     </div>
                                     <button type="submit" class="product-widget-btn">
                                         <i class="fas fa-search"></i>
@@ -28,300 +28,309 @@
                                     </button>
                                 </form>
                             </div>
+                        </div>
 
-                            <div class="col-md-6 col-lg-12">
-                                <div class="product-widget">
-                                    <h6 class="product-widget-title">Filter by experience</h6>
-                                    <form method="POST" action="{{ route('jobs.filterdAds') }}"
-                                        class="product-widget-form">
-                                        @csrf
-                                        <input name="subCat" type="text" value="{{ $id }}">
-                                        <ul class="product-widget-list">
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox" value="1"
-                                                        name="experience_1" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_1')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>1 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox" value="2"
-                                                        name="experience_2" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_2')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>2 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox" value="3"
-                                                        name="experience_3" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_3')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>3 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox" value="4"
-                                                        name="experience_4" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_4')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>4 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox" value="5"
-                                                        name="experience_5" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_5')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>5 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox" value="6"
-                                                        name="experience_6" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_6')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>6 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox" value="7"
-                                                        name="experience_7" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_7')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>7 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox" value="8"
-                                                        name="experience_8" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_8')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>8 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="9" name="experience_9" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_9')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>9 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="10" name="experience_10" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.experience_10')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>10 Year</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="more than 10" name="experience_more_than_10"
-                                                        id="chcek1" @if (null !== session('jobs_filter_data.experience_more_than_10')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>more than 10</span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                        <button type="submit" class="product-widget-btn">
-                                            <i class="fas fa-search"></i>
-                                            <span>search</span>
-                                        </button>
-                                    </form>
-                                </div>
+                        <div class="col-md-6 col-lg-12">
+                            <div class="product-widget">
+                                <h6 class="product-widget-title">Filter by experience</h6>
+                                <form method="POST" action="{{ route('jobs.filterdAds') }}" class="product-widget-form">
+                                    @csrf
+                                    <input name="min" value="{{ session('jobs_filter_data')['min'] ?? null }}"
+                                        type="hidden" placeholder="min">
+                                    <input name="max" value="{{ session('jobs_filter_data')['max'] ?? null }}"
+                                        type="hidden" placeholder="max">
+                                    <input name="subCat" type="hidden" value="{{ $id }}">
+                                    <ul class="product-widget-list">
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="1"
+                                                    name="experience_1" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_1')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>1 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="2"
+                                                    name="experience_2" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_2')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>2 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="3"
+                                                    name="experience_3" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_3')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>3 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="4"
+                                                    name="experience_4" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_4')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>4 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="5"
+                                                    name="experience_5" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_5')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>5 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="6"
+                                                    name="experience_6" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_6')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>6 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="7"
+                                                    name="experience_7" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_7')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>7 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="8"
+                                                    name="experience_8" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_8')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>8 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="9"
+                                                    name="experience_9" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_9')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>9 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="10"
+                                                    name="experience_10" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_10')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>10 Year</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox"
+                                                    value="more than 10" name="experience_more_than_10" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.experience_more_than_10')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>more than 10</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <button type="submit" class="product-widget-btn">
+                                        <i class="fas fa-search"></i>
+                                        <span>search</span>
+                                    </button>
+                                </form>
                             </div>
+                        </div>
 
-                            <div class="col-md-6 col-lg-12">
-                                <div class="product-widget">
-                                    <h6 class="product-widget-title">Filter by education</h6>
-                                    <form method="POST" action="{{ route('jobs.filterdAds') }}"
-                                        class="product-widget-form">
-                                        @csrf
-                                        <input name="subCat" type="text" value="{{ $id }}">
-                                        <ul class="product-widget-list">
+                        <div class="col-md-6 col-lg-12">
+                            <div class="product-widget">
+                                <h6 class="product-widget-title">Filter by education</h6>
+                                <form method="POST" action="{{ route('jobs.filterdAds') }}" class="product-widget-form">
+                                    @csrf
+                                    <input name="min" value="{{ session('jobs_filter_data')['min'] ?? null }}"
+                                        type="hidden" placeholder="min">
+                                    <input name="max" value="{{ session('jobs_filter_data')['max'] ?? null }}"
+                                        type="hidden" placeholder="max">
+                                    <input name="subCat" type="hidden" value="{{ $id }}">
+                                    <ul class="product-widget-list">
 
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Ordinary Level" name="Ordinary_Level" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Ordinary_Level')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Ordinary Level</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Advanced Level" name="Advanced_Level" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Advanced_Level')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Advanced Level</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Certificate" name="Certificate" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Certificate')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Certificate</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Diploma" name="Diploma" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Diploma')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Diploma</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Higher Diploma" name="Higher_Diploma" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Higher_Diploma')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Higher Diploma</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Degree" name="Degree" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Degree')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Degree</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Masters" name="Masters" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Masters')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Masters</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Docterate" name="Docterate" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Docterate')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Docterate</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Skilled Apprentice" name="Skilled_Apprentice"
-                                                        id="chcek1" @if (null !== session('jobs_filter_data.Skilled_Apprentice')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Skilled Apprentice</span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                        <button type="submit" class="product-widget-btn">
-                                            <i class="fas fa-search"></i>
-                                            <span>search</span>
-                                        </button>
-                                    </form>
-                                </div>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox"
+                                                    value="Ordinary Level" name="Ordinary_Level" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Ordinary_Level')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Ordinary Level</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox"
+                                                    value="Advanced Level" name="Advanced_Level" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Advanced_Level')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Advanced Level</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox"
+                                                    value="Certificate" name="Certificate" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Certificate')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Certificate</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="Diploma"
+                                                    name="Diploma" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Diploma')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Diploma</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox"
+                                                    value="Higher Diploma" name="Higher_Diploma" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Higher_Diploma')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Higher Diploma</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="Degree"
+                                                    name="Degree" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Degree')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Degree</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="Masters"
+                                                    name="Masters" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Masters')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Masters</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="Docterate"
+                                                    name="Docterate" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Docterate')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Docterate</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox"
+                                                    value="Skilled Apprentice" name="Skilled_Apprentice" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Skilled_Apprentice')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Skilled Apprentice</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <button type="submit" class="product-widget-btn">
+                                        <i class="fas fa-search"></i>
+                                        <span>search</span>
+                                    </button>
+                                </form>
                             </div>
+                        </div>
 
-                            <div class="col-md-6 col-lg-12">
-                                <div class="product-widget">
-                                    <h6 class="product-widget-title">Filter by job type</h6>
-                                    <form method="POST" action="{{ route('jobs.filterdAds') }}"
-                                        class="product-widget-form">
-                                        @csrf
-                                        <input name="subCat" type="text" value="{{ $id }}">
-                                        <ul class="product-widget-list">
+                        <div class="col-md-6 col-lg-12">
+                            <div class="product-widget">
+                                <h6 class="product-widget-title">Filter by job type</h6>
+                                <form method="POST" action="{{ route('jobs.filterdAds') }}"
+                                    class="product-widget-form">
+                                    @csrf
+                                    <input name="min" value="{{ session('jobs_filter_data')['min'] ?? null }}"
+                                        type="hidden" placeholder="min">
+                                    <input name="max" value="{{ session('jobs_filter_data')['max'] ?? null }}"
+                                        type="hidden" placeholder="max">
+                                    <input name="subCat" type="hidden" value="{{ $id }}">
+                                    <ul class="product-widget-list">
 
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Full Time" name="Full_Time" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Full_Time')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Full Time</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Part Time" name="Part_Time" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Part_Time')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Part Time</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Temporary" name="Temporary" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Temporary')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Temporary</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Internship" name="Internship" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Internship')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Internship</span>
-                                                </label>
-                                            </li>
-                                            <li class="product-widget-item">
-                                                <div class="product-widget-checkbox"><input type="checkbox"
-                                                        value="Contractual" name="Contractual" id="chcek1"
-                                                        @if (null !== session('jobs_filter_data.Contractual')) checked @endif>
-                                                </div>
-                                                <label class="product-widget-label" for="chcek1">
-                                                    <span>Contractual</span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                        <button type="submit" class="product-widget-btn">
-                                            <i class="fas fa-search"></i>
-                                            <span>search</span>
-                                        </button>
-                                    </form>
-                                </div>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="Full Time"
+                                                    name="Full_Time" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Full_Time')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Full Time</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="Part Time"
+                                                    name="Part_Time" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Part_Time')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Part Time</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox" value="Temporary"
+                                                    name="Temporary" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Temporary')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Temporary</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox"
+                                                    value="Internship" name="Internship" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Internship')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Internship</span>
+                                            </label>
+                                        </li>
+                                        <li class="product-widget-item">
+                                            <div class="product-widget-checkbox"><input type="checkbox"
+                                                    value="Contractual" name="Contractual" id="chcek1"
+                                                    @if (null !== session('jobs_filter_data.Contractual')) checked @endif>
+                                            </div>
+                                            <label class="product-widget-label" for="chcek1">
+                                                <span>Contractual</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <button type="submit" class="product-widget-btn">
+                                        <i class="fas fa-search"></i>
+                                        <span>search</span>
+                                    </button>
+                                </form>
                             </div>
-
                         </div>
 
                     </div>
+
                 </div>
+                {{-- </div> --}}
                 <div class="col-lg-8 col-xl-9">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="header-filter">
                                 <div class="filter-show">
-                                    <label class="filter-label">Show :</label>
-                                    <select class="custom-select filter-select">
-                                        <option value="1">12</option>
-                                        <option value="2">24</option>
-                                        <option value="3">36</option>
-                                    </select>
+                                    <div class="filter-show">
+                                        <a href="{{ route('ads.displaymain.ads', ['id' => $cat_id]) }}">Back to jobs
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="filter-short">
                                     <label class="filter-label">Short by :</label>
@@ -505,7 +514,7 @@
     <script>
         function getId(id) {
 
-            var url = '{{ route('web.dashboard.electronic.detailed', ':slug') }}';
+            var url = '{{ route('web.dashboard.jobs.detailed', ':slug') }}';
             url = url.replace(':slug', id);
             window.location.href = url;
         }

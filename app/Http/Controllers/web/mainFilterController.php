@@ -12,6 +12,7 @@ class mainFilterController extends Controller
     // *** for develop electronics category functions 
     protected function electronics($id)
     {
+        $cat_id = 2;
         // Forget a specific session variable
         session()->forget('electronics_filter_data');
 
@@ -24,7 +25,7 @@ class mainFilterController extends Controller
             ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
             ->paginate(12);
 
-        return view('web.displayAdsFilters.electronics', compact('ads', 'id'));
+        return view('web.displayAdsFilters.electronics', compact('ads', 'id', 'cat_id'));
     }
 
     public function electronicsFilterdRedirect(Request $request)
@@ -32,8 +33,8 @@ class mainFilterController extends Controller
         $oldFilterData = session('electronics_filter_data', []); // get old session data
         session([
             'electronics_filter_data' => [
-                'min' => $request->min ?? ($oldFilterData['min'] ?? null),
-                'max' => $request->max ?? ($oldFilterData['max'] ?? null),
+                'min' => $request->min ??  null,
+                'max' => $request->max ??  null,
                 'subCat' => $request->subCat ?? ($oldFilterData['subCat'] ?? null),
                 'new' => $request->new ?? null, // dont need old data
                 'used' => $request->used ?? null, // dont need old data
@@ -44,12 +45,20 @@ class mainFilterController extends Controller
 
     public function electronicsFilterdDisplay(Request $request)
     {
+        $electronicsFilterData = session('electronics_filter_data', []);
+
+        //store values in array
+        $conditionValues = []; // store electronics in a array
+        if (isset($electronicsFilterData['new'])) {
+            $conditionValues[] = $electronicsFilterData['new'];
+        }
+        if (isset($electronicsFilterData['used'])) {
+            $conditionValues[] = $electronicsFilterData['used'];
+        }
 
         $adsQuery = DB::table('ads')
             ->where('ads.status', 1)
             ->where('ads.cat_id', 2);
-
-        $electronicsFilterData = session('electronics_filter_data', []);
 
         if (isset($electronicsFilterData['subCat'])) {
             $adsQuery->where('ads.sub_cat_id', $electronicsFilterData['subCat']);
@@ -60,11 +69,8 @@ class mainFilterController extends Controller
         if (isset($electronicsFilterData['max'])) {
             $adsQuery->where('ads.ads_price', '<=', $electronicsFilterData['max']);
         }
-        if (isset($electronicsFilterData['new'])) {
-            $adsQuery->where('electronics.ele_condition', $electronicsFilterData['new']);
-        }
-        if (isset($electronicsFilterData['used'])) {
-            $adsQuery->where('electronics.ele_condition', $electronicsFilterData['used']);
+        if (!empty($conditionValues)) {
+            $adsQuery->whereIn('electronics.ele_condition', $conditionValues);
         }
 
         $ads = $adsQuery
@@ -73,8 +79,6 @@ class mainFilterController extends Controller
             ->join('electronics', 'ads.id', '=', 'electronics.ads_id')
             ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
             ->paginate(12);
-
-
 
         $id = $electronicsFilterData['subCat']; // pass subcat values
 
@@ -85,6 +89,7 @@ class mainFilterController extends Controller
     // *** for develop vehicles category functions 
     protected function vehicles($id)
     {
+        $cat_id = 3;
         // Forget a specific session variable
         session()->forget('vehicle_filter_data');
 
@@ -97,7 +102,7 @@ class mainFilterController extends Controller
             ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
             ->paginate(12);
 
-        return view('web.displayAdsFilters.vehicles', compact('ads', 'id'));
+        return view('web.displayAdsFilters.vehicles', compact('ads', 'id', 'cat_id'));
     }
 
     public function vehiclesFilterdRedirect(Request $request)
@@ -106,12 +111,9 @@ class mainFilterController extends Controller
         $oldFilterDataVehicle = session('vehicle_filter_data', []); // get old session data
         session([
             'vehicle_filter_data' => [
-                'min' => $request->min ?? ($oldFilterDataVehicle['min'] ?? null),
-                'max' => $request->max ?? ($oldFilterDataVehicle['max'] ?? null),
+                'min' => $request->min ?? null,
+                'max' => $request->max ?? null,
                 'subCat' => $request->subCat,
-                'New' => $request->New ?? null, // dont need old data
-                'Used' => $request->Used ?? null, // dont need old data
-                'Reconditioned' => $request->Reconditioned ?? null, // dont need old data
             ]
         ]);
 
@@ -138,18 +140,6 @@ class mainFilterController extends Controller
             $adsQuery->where('ads.ads_price', '<=', $vehiclesFilterData['max']);
         }
 
-        if (isset($vehiclesFilterData['New'])) {
-            $adsQuery->where('vehicle.condition',  $vehiclesFilterData['New']);
-        }
-
-        if (isset($vehiclesFilterData['Used'])) {
-            $adsQuery->where('vehicle.condition',  $vehiclesFilterData['Used']);
-        }
-
-        if (isset($vehiclesFilterData['Reconditioned'])) {
-            $adsQuery->where('vehicle.condition',  $vehiclesFilterData['Reconditioned']);
-        }
-
         $ads = $adsQuery
             ->orderBy('ads.id', 'desc')
             ->join('subcategory', 'ads.sub_cat_id', '=', 'subcategory.id')
@@ -167,6 +157,7 @@ class mainFilterController extends Controller
     // *** for develop property category function  ^^^^
     public function property($id)
     {
+        $cat_id = 4;
         // Forget a specific session variable
         session()->forget('property_filter_data');
 
@@ -179,7 +170,7 @@ class mainFilterController extends Controller
             ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
             ->paginate(12);
 
-        return view('web.displayAdsFilters.property', compact('ads', 'id'));
+        return view('web.displayAdsFilters.property', compact('ads', 'id', 'cat_id'));
     }
 
     public function propertyFilterdRedirect(Request $request)
@@ -187,8 +178,8 @@ class mainFilterController extends Controller
         $oldFilterDataProperty = session('property_filter_data', []); // get old session data
         session([
             'property_filter_data' => [
-                'min' => $request->min ?? ($oldFilterDataProperty['min'] ?? null),
-                'max' => $request->max ?? ($oldFilterDataProperty['max'] ?? null),
+                'min' => $request->min ?? null,
+                'max' => $request->max ?? null,
                 'subCat' => $request->subCat,
             ]
         ]);
@@ -233,6 +224,7 @@ class mainFilterController extends Controller
     // *** for develop service category function  ^^^^
     public function service($id)
     {
+        $cat_id = 5;
         // Forget a specific session variable
         session()->forget('service_filter_data');
 
@@ -245,7 +237,7 @@ class mainFilterController extends Controller
             ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
             ->paginate(12);
 
-        return view('web.displayAdsFilters.service', compact('ads', 'id'));
+        return view('web.displayAdsFilters.service', compact('ads', 'id', 'cat_id'));
     }
 
     public function serviceFilterdRedirect(Request $request)
@@ -253,8 +245,8 @@ class mainFilterController extends Controller
         $oldFilterDataService = session('service_filter_data', []); // get old session data
         session([
             'service_filter_data' => [
-                'min' => $request->min ?? ($oldFilterDataService['min'] ?? null),
-                'max' => $request->max ?? ($oldFilterDataService['max'] ?? null),
+                'min' => $request->min ?? null,
+                'max' => $request->max ?? null,
                 'subCat' => $request->subCat,
             ]
         ]);
@@ -298,7 +290,9 @@ class mainFilterController extends Controller
     // *** for develop jobs category function  ^^^^
 
     public function jobs($id)
-    {    // Forget a specific session variable
+    {
+        $cat_id = 6;
+        // Forget a specific session variable
         session()->forget('jobs_filter_data');
 
         $ads = DB::table('ads')
@@ -311,16 +305,16 @@ class mainFilterController extends Controller
             ->select('ads.*', 'subcategory.sub_cat_name as subCatName', 'jobs.sallary_start_from', 'jobs.sallary_start_to')
             ->paginate(12);
 
-        return view('web.displayAdsFilters.jobs', compact('ads', 'id'));
+        return view('web.displayAdsFilters.jobs', compact('ads', 'id', 'cat_id'));
     }
 
     public function jobsFilterdRedirect(Request $request)
     {
-        $oldFilterDataJobs = session('jobs_filter_data', []); // get old session data
+
         session([
             'jobs_filter_data' => [
-                'min' => $request->min ?? ($oldFilterDataJobs['min'] ?? null),
-                'max' => $request->max ?? ($oldFilterDataJobs['max'] ?? null),
+                'min' => $request->min ?? null,
+                'max' => $request->max ?? null,
                 'subCat' => $request->subCat,
                 // work expirience
                 'experience_1' => $request->experience_1 ?? null,
@@ -494,6 +488,7 @@ class mainFilterController extends Controller
     // *** for develop jobs category function  ^^^^
     public function education($id)
     {
+        $cat_id = 7;
         session()->forget('education_filter_data');
 
         $ads = DB::table('ads')
@@ -506,7 +501,7 @@ class mainFilterController extends Controller
             ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
             ->paginate(12);
 
-        return view('web.displayAdsFilters.education', compact('ads', 'id'));
+        return view('web.displayAdsFilters.education', compact('ads', 'id', 'cat_id'));
     }
 
     public function educationFilterdRedirect(Request $request)
@@ -514,8 +509,8 @@ class mainFilterController extends Controller
         $oldFilterDataEducation = session('education_filter_data', []); // get old session data
         session([
             'education_filter_data' => [
-                'min' => $request->min ?? ($oldFilterDataEducation['min'] ?? null),
-                'max' => $request->max ?? ($oldFilterDataEducation['max'] ?? null),
+                'min' => $request->min ?? null,
+                'max' => $request->max ?? null,
                 'subCat' => $request->subCat,
 
             ]

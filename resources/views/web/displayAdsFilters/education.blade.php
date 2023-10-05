@@ -20,7 +20,7 @@
                                             type="text" placeholder="min">
                                         <input name="max" value="{{ session('education_filter_data')['max'] ?? null }}"
                                             type="text" placeholder="max">
-                                        <input name="subCat" type="text" value="{{ $id }}">
+                                        <input name="subCat" type="hidden" value="{{ $id }}">
                                     </div>
                                     <button type="submit" class="product-widget-btn">
                                         <i class="fas fa-search"></i>
@@ -36,12 +36,10 @@
                         <div class="col-lg-12">
                             <div class="header-filter">
                                 <div class="filter-show">
-                                    <label class="filter-label">Show :</label>
-                                    <select class="custom-select filter-select">
-                                        <option value="1">12</option>
-                                        <option value="2">24</option>
-                                        <option value="3">36</option>
-                                    </select>
+                                    <div class="filter-show">
+                                        <a href="{{ route('ads.displaymain.ads', ['id' => $cat_id]) }}">Back to education
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="filter-short">
                                     <label class="filter-label">Short by :</label>
@@ -224,7 +222,7 @@
     <script>
         function getId(id) {
 
-            var url = '{{ route('web.dashboard.electronic.detailed', ':slug') }}';
+            var url = '{{ route('web.dashboard.education.detailed', ':slug') }}';
             url = url.replace(':slug', id);
             window.location.href = url;
         }
