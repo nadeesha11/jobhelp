@@ -12,6 +12,7 @@ class mainFilterController extends Controller
     // *** for develop electronics category functions 
     protected function electronics($id)
     {
+
         $cat_id = 2;
         // Forget a specific session variable
         session()->forget('electronics_filter_data');
@@ -38,6 +39,33 @@ class mainFilterController extends Controller
                 'subCat' => $request->subCat ?? ($oldFilterData['subCat'] ?? null),
                 'new' => $request->new ?? null, // dont need old data
                 'used' => $request->used ?? null, // dont need old data
+
+                "Ampara"  => $request->Ampara ?? null,
+                "Anuradhapura" => $request->Anuradhapura ?? null,
+                "Badulla" => $request->Badulla ?? null,
+                "Batticaloa" => $request->Batticaloa ?? null,
+                "Colombo" => $request->Colombo ?? null,
+                "Galle" => $request->Galle ?? null,
+                "Gampaha" => $request->Gampaha ?? null,
+                "Hambantota" => $request->Hambantota ?? null,
+                "Jaffna" => $request->Jaffna ?? null,
+                "Kalutara" => $request->Kalutara ?? null,
+                "Kandy" => $request->Kandy ?? null,
+                "Kegalle" => $request->Kegalle ?? null,
+                "Kilinochchi" => $request->Kilinochchi ?? null,
+                "Kurunegala" => $request->Kurunegala ?? null,
+                "Mannar" => $request->Mannar ?? null,
+                "Matale" => $request->Matale ?? null,
+                "Matara" => $request->Matara ?? null,
+                "Monaragala" => $request->Monaragala ?? null,
+                "Mullaitivu" => $request->Mullaitivu ?? null,
+                "Nuwara_Eliya" => $request->Nuwara_Eliya ?? null,
+                "Polonnaruwa" => $request->Polonnaruwa ?? null,
+                "Puttalam" => $request->Puttalam ?? null,
+                "Ratnapura" => $request->Ratnapura ?? null,
+                "Trincomalee" => $request->Trincomalee ?? null,
+                "Vavuniya" => $request->Vavuniya ?? null,
+
             ]
         ]);
         return redirect()->route('electronics.filterd.ads');
@@ -45,6 +73,7 @@ class mainFilterController extends Controller
 
     public function electronicsFilterdDisplay(Request $request)
     {
+        $cat_id = 2;
         $electronicsFilterData = session('electronics_filter_data', []);
 
         //store values in array
@@ -54,6 +83,85 @@ class mainFilterController extends Controller
         }
         if (isset($electronicsFilterData['used'])) {
             $conditionValues[] = $electronicsFilterData['used'];
+        }
+
+        //store values in array
+        $locationValues = []; // store location in a array
+
+        if (isset($electronicsFilterData['Ampara'])) {
+            $locationValues[] = $electronicsFilterData['Ampara'];
+        }
+        if (isset($electronicsFilterData['Anuradhapura'])) {
+            $locationValues[] = $electronicsFilterData['Anuradhapura'];
+        }
+        if (isset($electronicsFilterData['Badulla'])) {
+            $locationValues[] = $electronicsFilterData['Badulla'];
+        }
+        if (isset($electronicsFilterData['Batticaloa'])) {
+            $locationValues[] = $electronicsFilterData['Batticaloa'];
+        }
+        if (isset($electronicsFilterData['Colombo'])) {
+            $locationValues[] = $electronicsFilterData['Colombo'];
+        }
+        if (isset($electronicsFilterData['Galle'])) {
+            $locationValues[] = $electronicsFilterData['Galle'];
+        }
+        if (isset($electronicsFilterData['Gampaha'])) {
+            $locationValues[] = $electronicsFilterData['Gampaha'];
+        }
+        if (isset($electronicsFilterData['Hambantota'])) {
+            $locationValues[] = $electronicsFilterData['Hambantota'];
+        }
+        if (isset($electronicsFilterData['Jaffna'])) {
+            $locationValues[] = $electronicsFilterData['Jaffna'];
+        }
+        if (isset($electronicsFilterData['Kalutara'])) {
+            $locationValues[] = $electronicsFilterData['Kalutara'];
+        }
+        if (isset($electronicsFilterData['Kandy'])) {
+            $locationValues[] = $electronicsFilterData['Kandy'];
+        }
+        if (isset($electronicsFilterData['Kegalle'])) {
+            $locationValues[] = $electronicsFilterData['Kegalle'];
+        }
+        if (isset($electronicsFilterData['Kilinochchi'])) {
+            $locationValues[] = $electronicsFilterData['Kilinochchi'];
+        }
+        if (isset($electronicsFilterData['Kurunegala'])) {
+            $locationValues[] = $electronicsFilterData['Kurunegala'];
+        }
+        if (isset($electronicsFilterData['Mannar'])) {
+            $locationValues[] = $electronicsFilterData['Mannar'];
+        }
+        if (isset($electronicsFilterData['Matale'])) {
+            $locationValues[] = $electronicsFilterData['Matale'];
+        }
+        if (isset($electronicsFilterData['Matara'])) {
+            $locationValues[] = $electronicsFilterData['Matara'];
+        }
+        if (isset($electronicsFilterData['Monaragala'])) {
+            $locationValues[] = $electronicsFilterData['Monaragala'];
+        }
+        if (isset($electronicsFilterData['Mullaitivu'])) {
+            $locationValues[] = $electronicsFilterData['Mullaitivu'];
+        }
+        if (isset($electronicsFilterData['Nuwara_Eliya'])) {
+            $locationValues[] = $electronicsFilterData['Nuwara_Eliya'];
+        }
+        if (isset($electronicsFilterData['Polonnaruwa'])) {
+            $locationValues[] = $electronicsFilterData['Polonnaruwa'];
+        }
+        if (isset($electronicsFilterData['Puttalam'])) {
+            $locationValues[] = $electronicsFilterData['Puttalam'];
+        }
+        if (isset($electronicsFilterData['Ratnapura'])) {
+            $locationValues[] = $electronicsFilterData['Ratnapura'];
+        }
+        if (isset($electronicsFilterData['Trincomalee'])) {
+            $locationValues[] = $electronicsFilterData['Trincomalee'];
+        }
+        if (isset($electronicsFilterData['Vavuniya'])) {
+            $locationValues[] = $electronicsFilterData['Vavuniya'];
         }
 
         $adsQuery = DB::table('ads')
@@ -72,6 +180,9 @@ class mainFilterController extends Controller
         if (!empty($conditionValues)) {
             $adsQuery->whereIn('electronics.ele_condition', $conditionValues);
         }
+        if (!empty($locationValues)) {
+            $adsQuery->whereIn('ads.ads_location', $locationValues);
+        }
 
         $ads = $adsQuery
             ->orderBy('ads.id', 'desc')
@@ -82,7 +193,7 @@ class mainFilterController extends Controller
 
         $id = $electronicsFilterData['subCat']; // pass subcat values
 
-        return view('web.displayAdsFilters.electronics', compact('ads', 'id'));
+        return view('web.displayAdsFilters.electronics', compact('ads', 'id', 'cat_id'));
     }
     // *** for develop electronics category functions ^^^^
 
@@ -122,6 +233,7 @@ class mainFilterController extends Controller
 
     public function vehiclesFilterdDisplay(Request $request)
     {
+        $cat_id = 3;
         $vehiclesFilterData = session('vehicle_filter_data', []);
 
         $adsQuery = DB::table('ads')
@@ -149,7 +261,7 @@ class mainFilterController extends Controller
 
         $id = $vehiclesFilterData['subCat']; // pass subcat values
 
-        return view('web.displayAdsFilters.vehicles', compact('ads', 'id'));
+        return view('web.displayAdsFilters.vehicles', compact('ads', 'id', 'cat_id'));
     }
 
     // *** for develop vehicles category functions ^^^^
@@ -189,6 +301,7 @@ class mainFilterController extends Controller
 
     public function propertyFilterdDisplay()
     {
+        $cat_id = 4;
         $propertyFilterData = session('property_filter_data', []);
 
         $adsQuery = DB::table('ads')
@@ -216,7 +329,7 @@ class mainFilterController extends Controller
 
         $id = $propertyFilterData['subCat']; // pass subcat values
 
-        return view('web.displayAdsFilters.property', compact('ads', 'id'));
+        return view('web.displayAdsFilters.property', compact('ads', 'id', 'cat_id'));
     }
 
     // *** for develop property category function  ^^^^
@@ -256,6 +369,7 @@ class mainFilterController extends Controller
 
     public function serviceFilterdDisplay()
     {
+        $cat_id = 5;
         $serviceFilterData = session('service_filter_data', []);
 
         $adsQuery = DB::table('ads')
@@ -283,7 +397,7 @@ class mainFilterController extends Controller
 
         $id = $serviceFilterData['subCat']; // pass subcat values
 
-        return view('web.displayAdsFilters.service', compact('ads', 'id'));
+        return view('web.displayAdsFilters.service', compact('ads', 'id', 'cat_id'));
     }
     // *** for develop service category function  ^^^^
 
@@ -352,6 +466,7 @@ class mainFilterController extends Controller
 
     public function jobsFilterdDisplay()
     {
+        $cat_id = 6;
         $jobsFilterData = session('jobs_filter_data', []);
 
         $experienceValues = []; // store expirience in a aarray
@@ -480,7 +595,7 @@ class mainFilterController extends Controller
 
         $id = $jobsFilterData['subCat']; // pass subcat values
 
-        return view('web.displayAdsFilters.jobs', compact('ads', 'id'));
+        return view('web.displayAdsFilters.jobs', compact('ads', 'id', 'cat_id'));
     }
     // *** for develop jobs category function  ^^^^
 
@@ -521,6 +636,7 @@ class mainFilterController extends Controller
 
     public function educationFilterdDisplay()
     {
+        $cat_id = 7;
         $educationFilterData = session('education_filter_data', []);
 
         $adsQuery = DB::table('ads')
@@ -548,6 +664,6 @@ class mainFilterController extends Controller
 
         $id = $educationFilterData['subCat']; // pass subcat values
 
-        return view('web.displayAdsFilters.education', compact('ads', 'id'));
+        return view('web.displayAdsFilters.education', compact('ads', 'id', 'cat_id'));
     }
 }

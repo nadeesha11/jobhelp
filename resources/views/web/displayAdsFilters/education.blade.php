@@ -31,6 +31,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-8 col-xl-9">
                     <div class="row">
                         <div class="col-lg-12">
