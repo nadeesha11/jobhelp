@@ -219,12 +219,37 @@ class mainFilterController extends Controller
     public function vehiclesFilterdRedirect(Request $request)
     {
 
-        $oldFilterDataVehicle = session('vehicle_filter_data', []); // get old session data
         session([
             'vehicle_filter_data' => [
                 'min' => $request->min ?? null,
                 'max' => $request->max ?? null,
                 'subCat' => $request->subCat,
+
+                "Ampara"  => $request->Ampara ?? null,
+                "Anuradhapura" => $request->Anuradhapura ?? null,
+                "Badulla" => $request->Badulla ?? null,
+                "Batticaloa" => $request->Batticaloa ?? null,
+                "Colombo" => $request->Colombo ?? null,
+                "Galle" => $request->Galle ?? null,
+                "Gampaha" => $request->Gampaha ?? null,
+                "Hambantota" => $request->Hambantota ?? null,
+                "Jaffna" => $request->Jaffna ?? null,
+                "Kalutara" => $request->Kalutara ?? null,
+                "Kandy" => $request->Kandy ?? null,
+                "Kegalle" => $request->Kegalle ?? null,
+                "Kilinochchi" => $request->Kilinochchi ?? null,
+                "Kurunegala" => $request->Kurunegala ?? null,
+                "Mannar" => $request->Mannar ?? null,
+                "Matale" => $request->Matale ?? null,
+                "Matara" => $request->Matara ?? null,
+                "Monaragala" => $request->Monaragala ?? null,
+                "Mullaitivu" => $request->Mullaitivu ?? null,
+                "Nuwara_Eliya" => $request->Nuwara_Eliya ?? null,
+                "Polonnaruwa" => $request->Polonnaruwa ?? null,
+                "Puttalam" => $request->Puttalam ?? null,
+                "Ratnapura" => $request->Ratnapura ?? null,
+                "Trincomalee" => $request->Trincomalee ?? null,
+                "Vavuniya" => $request->Vavuniya ?? null,
             ]
         ]);
 
@@ -235,6 +260,85 @@ class mainFilterController extends Controller
     {
         $cat_id = 3;
         $vehiclesFilterData = session('vehicle_filter_data', []);
+
+        //store values in array
+        $locationValues = []; // store location in a array
+
+        if (isset($vehiclesFilterData['Ampara'])) {
+            $locationValues[] = $vehiclesFilterData['Ampara'];
+        }
+        if (isset($vehiclesFilterData['Anuradhapura'])) {
+            $locationValues[] = $vehiclesFilterData['Anuradhapura'];
+        }
+        if (isset($vehiclesFilterData['Badulla'])) {
+            $locationValues[] = $vehiclesFilterData['Badulla'];
+        }
+        if (isset($vehiclesFilterData['Batticaloa'])) {
+            $locationValues[] = $vehiclesFilterData['Batticaloa'];
+        }
+        if (isset($vehiclesFilterData['Colombo'])) {
+            $locationValues[] = $vehiclesFilterData['Colombo'];
+        }
+        if (isset($vehiclesFilterData['Galle'])) {
+            $locationValues[] = $vehiclesFilterData['Galle'];
+        }
+        if (isset($vehiclesFilterData['Gampaha'])) {
+            $locationValues[] = $vehiclesFilterData['Gampaha'];
+        }
+        if (isset($vehiclesFilterData['Hambantota'])) {
+            $locationValues[] = $vehiclesFilterData['Hambantota'];
+        }
+        if (isset($vehiclesFilterData['Jaffna'])) {
+            $locationValues[] = $vehiclesFilterData['Jaffna'];
+        }
+        if (isset($vehiclesFilterData['Kalutara'])) {
+            $locationValues[] = $vehiclesFilterData['Kalutara'];
+        }
+        if (isset($vehiclesFilterData['Kandy'])) {
+            $locationValues[] = $vehiclesFilterData['Kandy'];
+        }
+        if (isset($vehiclesFilterData['Kegalle'])) {
+            $locationValues[] = $vehiclesFilterData['Kegalle'];
+        }
+        if (isset($vehiclesFilterData['Kilinochchi'])) {
+            $locationValues[] = $vehiclesFilterData['Kilinochchi'];
+        }
+        if (isset($vehiclesFilterData['Kurunegala'])) {
+            $locationValues[] = $vehiclesFilterData['Kurunegala'];
+        }
+        if (isset($vehiclesFilterData['Mannar'])) {
+            $locationValues[] = $vehiclesFilterData['Mannar'];
+        }
+        if (isset($vehiclesFilterData['Matale'])) {
+            $locationValues[] = $vehiclesFilterData['Matale'];
+        }
+        if (isset($vehiclesFilterData['Matara'])) {
+            $locationValues[] = $vehiclesFilterData['Matara'];
+        }
+        if (isset($vehiclesFilterData['Monaragala'])) {
+            $locationValues[] = $vehiclesFilterData['Monaragala'];
+        }
+        if (isset($vehiclesFilterData['Mullaitivu'])) {
+            $locationValues[] = $vehiclesFilterData['Mullaitivu'];
+        }
+        if (isset($vehiclesFilterData['Nuwara_Eliya'])) {
+            $locationValues[] = $vehiclesFilterData['Nuwara_Eliya'];
+        }
+        if (isset($vehiclesFilterData['Polonnaruwa'])) {
+            $locationValues[] = $vehiclesFilterData['Polonnaruwa'];
+        }
+        if (isset($vehiclesFilterData['Puttalam'])) {
+            $locationValues[] = $vehiclesFilterData['Puttalam'];
+        }
+        if (isset($vehiclesFilterData['Ratnapura'])) {
+            $locationValues[] = $vehiclesFilterData['Ratnapura'];
+        }
+        if (isset($vehiclesFilterData['Trincomalee'])) {
+            $locationValues[] = $vehiclesFilterData['Trincomalee'];
+        }
+        if (isset($vehiclesFilterData['Vavuniya'])) {
+            $locationValues[] = $vehiclesFilterData['Vavuniya'];
+        }
 
         $adsQuery = DB::table('ads')
             ->where('ads.status', 1)
@@ -250,6 +354,9 @@ class mainFilterController extends Controller
 
         if (isset($vehiclesFilterData['max'])) {
             $adsQuery->where('ads.ads_price', '<=', $vehiclesFilterData['max']);
+        }
+        if (!empty($locationValues)) {
+            $adsQuery->whereIn('ads.ads_location', $locationValues);
         }
 
         $ads = $adsQuery
@@ -287,12 +394,37 @@ class mainFilterController extends Controller
 
     public function propertyFilterdRedirect(Request $request)
     {
-        $oldFilterDataProperty = session('property_filter_data', []); // get old session data
         session([
             'property_filter_data' => [
                 'min' => $request->min ?? null,
                 'max' => $request->max ?? null,
                 'subCat' => $request->subCat,
+
+                "Ampara"  => $request->Ampara ?? null,
+                "Anuradhapura" => $request->Anuradhapura ?? null,
+                "Badulla" => $request->Badulla ?? null,
+                "Batticaloa" => $request->Batticaloa ?? null,
+                "Colombo" => $request->Colombo ?? null,
+                "Galle" => $request->Galle ?? null,
+                "Gampaha" => $request->Gampaha ?? null,
+                "Hambantota" => $request->Hambantota ?? null,
+                "Jaffna" => $request->Jaffna ?? null,
+                "Kalutara" => $request->Kalutara ?? null,
+                "Kandy" => $request->Kandy ?? null,
+                "Kegalle" => $request->Kegalle ?? null,
+                "Kilinochchi" => $request->Kilinochchi ?? null,
+                "Kurunegala" => $request->Kurunegala ?? null,
+                "Mannar" => $request->Mannar ?? null,
+                "Matale" => $request->Matale ?? null,
+                "Matara" => $request->Matara ?? null,
+                "Monaragala" => $request->Monaragala ?? null,
+                "Mullaitivu" => $request->Mullaitivu ?? null,
+                "Nuwara_Eliya" => $request->Nuwara_Eliya ?? null,
+                "Polonnaruwa" => $request->Polonnaruwa ?? null,
+                "Puttalam" => $request->Puttalam ?? null,
+                "Ratnapura" => $request->Ratnapura ?? null,
+                "Trincomalee" => $request->Trincomalee ?? null,
+                "Vavuniya" => $request->Vavuniya ?? null,
             ]
         ]);
 
@@ -303,6 +435,85 @@ class mainFilterController extends Controller
     {
         $cat_id = 4;
         $propertyFilterData = session('property_filter_data', []);
+
+        //store values in array
+        $locationValues = []; // store location in a array
+
+        if (isset($propertyFilterData['Ampara'])) {
+            $locationValues[] = $propertyFilterData['Ampara'];
+        }
+        if (isset($propertyFilterData['Anuradhapura'])) {
+            $locationValues[] = $propertyFilterData['Anuradhapura'];
+        }
+        if (isset($propertyFilterData['Badulla'])) {
+            $locationValues[] = $propertyFilterData['Badulla'];
+        }
+        if (isset($propertyFilterData['Batticaloa'])) {
+            $locationValues[] = $propertyFilterData['Batticaloa'];
+        }
+        if (isset($propertyFilterData['Colombo'])) {
+            $locationValues[] = $propertyFilterData['Colombo'];
+        }
+        if (isset($propertyFilterData['Galle'])) {
+            $locationValues[] = $propertyFilterData['Galle'];
+        }
+        if (isset($propertyFilterData['Gampaha'])) {
+            $locationValues[] = $propertyFilterData['Gampaha'];
+        }
+        if (isset($propertyFilterData['Hambantota'])) {
+            $locationValues[] = $propertyFilterData['Hambantota'];
+        }
+        if (isset($propertyFilterData['Jaffna'])) {
+            $locationValues[] = $propertyFilterData['Jaffna'];
+        }
+        if (isset($propertyFilterData['Kalutara'])) {
+            $locationValues[] = $propertyFilterData['Kalutara'];
+        }
+        if (isset($propertyFilterData['Kandy'])) {
+            $locationValues[] = $propertyFilterData['Kandy'];
+        }
+        if (isset($propertyFilterData['Kegalle'])) {
+            $locationValues[] = $propertyFilterData['Kegalle'];
+        }
+        if (isset($propertyFilterData['Kilinochchi'])) {
+            $locationValues[] = $propertyFilterData['Kilinochchi'];
+        }
+        if (isset($propertyFilterData['Kurunegala'])) {
+            $locationValues[] = $propertyFilterData['Kurunegala'];
+        }
+        if (isset($propertyFilterData['Mannar'])) {
+            $locationValues[] = $propertyFilterData['Mannar'];
+        }
+        if (isset($propertyFilterData['Matale'])) {
+            $locationValues[] = $propertyFilterData['Matale'];
+        }
+        if (isset($propertyFilterData['Matara'])) {
+            $locationValues[] = $propertyFilterData['Matara'];
+        }
+        if (isset($propertyFilterData['Monaragala'])) {
+            $locationValues[] = $propertyFilterData['Monaragala'];
+        }
+        if (isset($propertyFilterData['Mullaitivu'])) {
+            $locationValues[] = $propertyFilterData['Mullaitivu'];
+        }
+        if (isset($propertyFilterData['Nuwara_Eliya'])) {
+            $locationValues[] = $propertyFilterData['Nuwara_Eliya'];
+        }
+        if (isset($propertyFilterData['Polonnaruwa'])) {
+            $locationValues[] = $propertyFilterData['Polonnaruwa'];
+        }
+        if (isset($propertyFilterData['Puttalam'])) {
+            $locationValues[] = $propertyFilterData['Puttalam'];
+        }
+        if (isset($propertyFilterData['Ratnapura'])) {
+            $locationValues[] = $propertyFilterData['Ratnapura'];
+        }
+        if (isset($propertyFilterData['Trincomalee'])) {
+            $locationValues[] = $propertyFilterData['Trincomalee'];
+        }
+        if (isset($propertyFilterData['Vavuniya'])) {
+            $locationValues[] = $propertyFilterData['Vavuniya'];
+        }
 
         $adsQuery = DB::table('ads')
             ->where('ads.status', 1)
@@ -318,6 +529,9 @@ class mainFilterController extends Controller
 
         if (isset($propertyFilterData['max'])) {
             $adsQuery->where('ads.ads_price', '<=', $propertyFilterData['max']);
+        }
+        if (!empty($locationValues)) {
+            $adsQuery->whereIn('ads.ads_location', $locationValues);
         }
 
         $ads = $adsQuery
@@ -355,12 +569,38 @@ class mainFilterController extends Controller
 
     public function serviceFilterdRedirect(Request $request)
     {
-        $oldFilterDataService = session('service_filter_data', []); // get old session data
+
         session([
             'service_filter_data' => [
                 'min' => $request->min ?? null,
                 'max' => $request->max ?? null,
                 'subCat' => $request->subCat,
+
+                "Ampara"  => $request->Ampara ?? null,
+                "Anuradhapura" => $request->Anuradhapura ?? null,
+                "Badulla" => $request->Badulla ?? null,
+                "Batticaloa" => $request->Batticaloa ?? null,
+                "Colombo" => $request->Colombo ?? null,
+                "Galle" => $request->Galle ?? null,
+                "Gampaha" => $request->Gampaha ?? null,
+                "Hambantota" => $request->Hambantota ?? null,
+                "Jaffna" => $request->Jaffna ?? null,
+                "Kalutara" => $request->Kalutara ?? null,
+                "Kandy" => $request->Kandy ?? null,
+                "Kegalle" => $request->Kegalle ?? null,
+                "Kilinochchi" => $request->Kilinochchi ?? null,
+                "Kurunegala" => $request->Kurunegala ?? null,
+                "Mannar" => $request->Mannar ?? null,
+                "Matale" => $request->Matale ?? null,
+                "Matara" => $request->Matara ?? null,
+                "Monaragala" => $request->Monaragala ?? null,
+                "Mullaitivu" => $request->Mullaitivu ?? null,
+                "Nuwara_Eliya" => $request->Nuwara_Eliya ?? null,
+                "Polonnaruwa" => $request->Polonnaruwa ?? null,
+                "Puttalam" => $request->Puttalam ?? null,
+                "Ratnapura" => $request->Ratnapura ?? null,
+                "Trincomalee" => $request->Trincomalee ?? null,
+                "Vavuniya" => $request->Vavuniya ?? null,
             ]
         ]);
 
@@ -371,6 +611,85 @@ class mainFilterController extends Controller
     {
         $cat_id = 5;
         $serviceFilterData = session('service_filter_data', []);
+
+        //store values in array
+        $locationValues = []; // store location in a array
+
+        if (isset($serviceFilterData['Ampara'])) {
+            $locationValues[] = $serviceFilterData['Ampara'];
+        }
+        if (isset($serviceFilterData['Anuradhapura'])) {
+            $locationValues[] = $serviceFilterData['Anuradhapura'];
+        }
+        if (isset($serviceFilterData['Badulla'])) {
+            $locationValues[] = $serviceFilterData['Badulla'];
+        }
+        if (isset($serviceFilterData['Batticaloa'])) {
+            $locationValues[] = $serviceFilterData['Batticaloa'];
+        }
+        if (isset($serviceFilterData['Colombo'])) {
+            $locationValues[] = $serviceFilterData['Colombo'];
+        }
+        if (isset($serviceFilterData['Galle'])) {
+            $locationValues[] = $serviceFilterData['Galle'];
+        }
+        if (isset($serviceFilterData['Gampaha'])) {
+            $locationValues[] = $serviceFilterData['Gampaha'];
+        }
+        if (isset($serviceFilterData['Hambantota'])) {
+            $locationValues[] = $serviceFilterData['Hambantota'];
+        }
+        if (isset($serviceFilterData['Jaffna'])) {
+            $locationValues[] = $serviceFilterData['Jaffna'];
+        }
+        if (isset($serviceFilterData['Kalutara'])) {
+            $locationValues[] = $serviceFilterData['Kalutara'];
+        }
+        if (isset($serviceFilterData['Kandy'])) {
+            $locationValues[] = $serviceFilterData['Kandy'];
+        }
+        if (isset($serviceFilterData['Kegalle'])) {
+            $locationValues[] = $serviceFilterData['Kegalle'];
+        }
+        if (isset($serviceFilterData['Kilinochchi'])) {
+            $locationValues[] = $serviceFilterData['Kilinochchi'];
+        }
+        if (isset($serviceFilterData['Kurunegala'])) {
+            $locationValues[] = $serviceFilterData['Kurunegala'];
+        }
+        if (isset($serviceFilterData['Mannar'])) {
+            $locationValues[] = $serviceFilterData['Mannar'];
+        }
+        if (isset($serviceFilterData['Matale'])) {
+            $locationValues[] = $serviceFilterData['Matale'];
+        }
+        if (isset($serviceFilterData['Matara'])) {
+            $locationValues[] = $serviceFilterData['Matara'];
+        }
+        if (isset($serviceFilterData['Monaragala'])) {
+            $locationValues[] = $serviceFilterData['Monaragala'];
+        }
+        if (isset($serviceFilterData['Mullaitivu'])) {
+            $locationValues[] = $serviceFilterData['Mullaitivu'];
+        }
+        if (isset($serviceFilterData['Nuwara_Eliya'])) {
+            $locationValues[] = $serviceFilterData['Nuwara_Eliya'];
+        }
+        if (isset($serviceFilterData['Polonnaruwa'])) {
+            $locationValues[] = $serviceFilterData['Polonnaruwa'];
+        }
+        if (isset($serviceFilterData['Puttalam'])) {
+            $locationValues[] = $serviceFilterData['Puttalam'];
+        }
+        if (isset($serviceFilterData['Ratnapura'])) {
+            $locationValues[] = $serviceFilterData['Ratnapura'];
+        }
+        if (isset($serviceFilterData['Trincomalee'])) {
+            $locationValues[] = $serviceFilterData['Trincomalee'];
+        }
+        if (isset($serviceFilterData['Vavuniya'])) {
+            $locationValues[] = $serviceFilterData['Vavuniya'];
+        }
 
         $adsQuery = DB::table('ads')
             ->where('ads.status', 1)
@@ -386,6 +705,9 @@ class mainFilterController extends Controller
 
         if (isset($serviceFilterData['max'])) {
             $adsQuery->where('ads.ads_price', '<=', $serviceFilterData['max']);
+        }
+        if (!empty($locationValues)) {
+            $adsQuery->whereIn('ads.ads_location', $locationValues);
         }
 
         $ads = $adsQuery
@@ -458,6 +780,32 @@ class mainFilterController extends Controller
                 'Temporary' => $request->Temporary ?? null,
                 'Internship' => $request->Internship ?? null,
                 'Contractual' => $request->Contractual ?? null,
+                //location data 
+                "Ampara"  => $request->Ampara ?? null,
+                "Anuradhapura" => $request->Anuradhapura ?? null,
+                "Badulla" => $request->Badulla ?? null,
+                "Batticaloa" => $request->Batticaloa ?? null,
+                "Colombo" => $request->Colombo ?? null,
+                "Galle" => $request->Galle ?? null,
+                "Gampaha" => $request->Gampaha ?? null,
+                "Hambantota" => $request->Hambantota ?? null,
+                "Jaffna" => $request->Jaffna ?? null,
+                "Kalutara" => $request->Kalutara ?? null,
+                "Kandy" => $request->Kandy ?? null,
+                "Kegalle" => $request->Kegalle ?? null,
+                "Kilinochchi" => $request->Kilinochchi ?? null,
+                "Kurunegala" => $request->Kurunegala ?? null,
+                "Mannar" => $request->Mannar ?? null,
+                "Matale" => $request->Matale ?? null,
+                "Matara" => $request->Matara ?? null,
+                "Monaragala" => $request->Monaragala ?? null,
+                "Mullaitivu" => $request->Mullaitivu ?? null,
+                "Nuwara_Eliya" => $request->Nuwara_Eliya ?? null,
+                "Polonnaruwa" => $request->Polonnaruwa ?? null,
+                "Puttalam" => $request->Puttalam ?? null,
+                "Ratnapura" => $request->Ratnapura ?? null,
+                "Trincomalee" => $request->Trincomalee ?? null,
+                "Vavuniya" => $request->Vavuniya ?? null,
             ]
         ]);
 
@@ -559,6 +907,85 @@ class mainFilterController extends Controller
             $jobTypeValues[] = $jobsFilterData['Contractual'];
         }
 
+        //store values in array
+        $locationValues = []; // store location in a array
+
+        if (isset($jobsFilterData['Ampara'])) {
+            $locationValues[] = $jobsFilterData['Ampara'];
+        }
+        if (isset($jobsFilterData['Anuradhapura'])) {
+            $locationValues[] = $jobsFilterData['Anuradhapura'];
+        }
+        if (isset($jobsFilterData['Badulla'])) {
+            $locationValues[] = $jobsFilterData['Badulla'];
+        }
+        if (isset($jobsFilterData['Batticaloa'])) {
+            $locationValues[] = $jobsFilterData['Batticaloa'];
+        }
+        if (isset($jobsFilterData['Colombo'])) {
+            $locationValues[] = $jobsFilterData['Colombo'];
+        }
+        if (isset($jobsFilterData['Galle'])) {
+            $locationValues[] = $jobsFilterData['Galle'];
+        }
+        if (isset($jobsFilterData['Gampaha'])) {
+            $locationValues[] = $jobsFilterData['Gampaha'];
+        }
+        if (isset($jobsFilterData['Hambantota'])) {
+            $locationValues[] = $jobsFilterData['Hambantota'];
+        }
+        if (isset($jobsFilterData['Jaffna'])) {
+            $locationValues[] = $jobsFilterData['Jaffna'];
+        }
+        if (isset($jobsFilterData['Kalutara'])) {
+            $locationValues[] = $jobsFilterData['Kalutara'];
+        }
+        if (isset($jobsFilterData['Kandy'])) {
+            $locationValues[] = $jobsFilterData['Kandy'];
+        }
+        if (isset($jobsFilterData['Kegalle'])) {
+            $locationValues[] = $jobsFilterData['Kegalle'];
+        }
+        if (isset($jobsFilterData['Kilinochchi'])) {
+            $locationValues[] = $jobsFilterData['Kilinochchi'];
+        }
+        if (isset($jobsFilterData['Kurunegala'])) {
+            $locationValues[] = $jobsFilterData['Kurunegala'];
+        }
+        if (isset($jobsFilterData['Mannar'])) {
+            $locationValues[] = $jobsFilterData['Mannar'];
+        }
+        if (isset($jobsFilterData['Matale'])) {
+            $locationValues[] = $jobsFilterData['Matale'];
+        }
+        if (isset($jobsFilterData['Matara'])) {
+            $locationValues[] = $jobsFilterData['Matara'];
+        }
+        if (isset($jobsFilterData['Monaragala'])) {
+            $locationValues[] = $jobsFilterData['Monaragala'];
+        }
+        if (isset($jobsFilterData['Mullaitivu'])) {
+            $locationValues[] = $jobsFilterData['Mullaitivu'];
+        }
+        if (isset($jobsFilterData['Nuwara_Eliya'])) {
+            $locationValues[] = $jobsFilterData['Nuwara_Eliya'];
+        }
+        if (isset($jobsFilterData['Polonnaruwa'])) {
+            $locationValues[] = $jobsFilterData['Polonnaruwa'];
+        }
+        if (isset($jobsFilterData['Puttalam'])) {
+            $locationValues[] = $jobsFilterData['Puttalam'];
+        }
+        if (isset($jobsFilterData['Ratnapura'])) {
+            $locationValues[] = $jobsFilterData['Ratnapura'];
+        }
+        if (isset($jobsFilterData['Trincomalee'])) {
+            $locationValues[] = $jobsFilterData['Trincomalee'];
+        }
+        if (isset($jobsFilterData['Vavuniya'])) {
+            $locationValues[] = $jobsFilterData['Vavuniya'];
+        }
+
 
         $adsQuery = DB::table('ads')
             ->where('ads.status', 1)
@@ -583,6 +1010,9 @@ class mainFilterController extends Controller
         }
         if (!empty($jobTypeValues)) {
             $adsQuery->whereIn('jobs.jobType', $jobTypeValues);
+        }
+        if (!empty($locationValues)) {
+            $adsQuery->whereIn('ads.ads_location', $locationValues);
         }
 
         $ads = $adsQuery
@@ -621,12 +1051,38 @@ class mainFilterController extends Controller
 
     public function educationFilterdRedirect(Request $request)
     {
-        $oldFilterDataEducation = session('education_filter_data', []); // get old session data
         session([
             'education_filter_data' => [
                 'min' => $request->min ?? null,
                 'max' => $request->max ?? null,
                 'subCat' => $request->subCat,
+
+                //location data 
+                "Ampara"  => $request->Ampara ?? null,
+                "Anuradhapura" => $request->Anuradhapura ?? null,
+                "Badulla" => $request->Badulla ?? null,
+                "Batticaloa" => $request->Batticaloa ?? null,
+                "Colombo" => $request->Colombo ?? null,
+                "Galle" => $request->Galle ?? null,
+                "Gampaha" => $request->Gampaha ?? null,
+                "Hambantota" => $request->Hambantota ?? null,
+                "Jaffna" => $request->Jaffna ?? null,
+                "Kalutara" => $request->Kalutara ?? null,
+                "Kandy" => $request->Kandy ?? null,
+                "Kegalle" => $request->Kegalle ?? null,
+                "Kilinochchi" => $request->Kilinochchi ?? null,
+                "Kurunegala" => $request->Kurunegala ?? null,
+                "Mannar" => $request->Mannar ?? null,
+                "Matale" => $request->Matale ?? null,
+                "Matara" => $request->Matara ?? null,
+                "Monaragala" => $request->Monaragala ?? null,
+                "Mullaitivu" => $request->Mullaitivu ?? null,
+                "Nuwara_Eliya" => $request->Nuwara_Eliya ?? null,
+                "Polonnaruwa" => $request->Polonnaruwa ?? null,
+                "Puttalam" => $request->Puttalam ?? null,
+                "Ratnapura" => $request->Ratnapura ?? null,
+                "Trincomalee" => $request->Trincomalee ?? null,
+                "Vavuniya" => $request->Vavuniya ?? null,
 
             ]
         ]);
@@ -638,6 +1094,85 @@ class mainFilterController extends Controller
     {
         $cat_id = 7;
         $educationFilterData = session('education_filter_data', []);
+
+        //store values in array
+        $locationValues = []; // store location in a array
+
+        if (isset($educationFilterData['Ampara'])) {
+            $locationValues[] = $educationFilterData['Ampara'];
+        }
+        if (isset($educationFilterData['Anuradhapura'])) {
+            $locationValues[] = $educationFilterData['Anuradhapura'];
+        }
+        if (isset($educationFilterData['Badulla'])) {
+            $locationValues[] = $educationFilterData['Badulla'];
+        }
+        if (isset($educationFilterData['Batticaloa'])) {
+            $locationValues[] = $educationFilterData['Batticaloa'];
+        }
+        if (isset($educationFilterData['Colombo'])) {
+            $locationValues[] = $educationFilterData['Colombo'];
+        }
+        if (isset($educationFilterData['Galle'])) {
+            $locationValues[] = $educationFilterData['Galle'];
+        }
+        if (isset($educationFilterData['Gampaha'])) {
+            $locationValues[] = $educationFilterData['Gampaha'];
+        }
+        if (isset($educationFilterData['Hambantota'])) {
+            $locationValues[] = $educationFilterData['Hambantota'];
+        }
+        if (isset($educationFilterData['Jaffna'])) {
+            $locationValues[] = $educationFilterData['Jaffna'];
+        }
+        if (isset($educationFilterData['Kalutara'])) {
+            $locationValues[] = $educationFilterData['Kalutara'];
+        }
+        if (isset($educationFilterData['Kandy'])) {
+            $locationValues[] = $educationFilterData['Kandy'];
+        }
+        if (isset($educationFilterData['Kegalle'])) {
+            $locationValues[] = $educationFilterData['Kegalle'];
+        }
+        if (isset($educationFilterData['Kilinochchi'])) {
+            $locationValues[] = $educationFilterData['Kilinochchi'];
+        }
+        if (isset($educationFilterData['Kurunegala'])) {
+            $locationValues[] = $educationFilterData['Kurunegala'];
+        }
+        if (isset($educationFilterData['Mannar'])) {
+            $locationValues[] = $educationFilterData['Mannar'];
+        }
+        if (isset($educationFilterData['Matale'])) {
+            $locationValues[] = $educationFilterData['Matale'];
+        }
+        if (isset($educationFilterData['Matara'])) {
+            $locationValues[] = $educationFilterData['Matara'];
+        }
+        if (isset($educationFilterData['Monaragala'])) {
+            $locationValues[] = $educationFilterData['Monaragala'];
+        }
+        if (isset($educationFilterData['Mullaitivu'])) {
+            $locationValues[] = $educationFilterData['Mullaitivu'];
+        }
+        if (isset($educationFilterData['Nuwara_Eliya'])) {
+            $locationValues[] = $educationFilterData['Nuwara_Eliya'];
+        }
+        if (isset($educationFilterData['Polonnaruwa'])) {
+            $locationValues[] = $educationFilterData['Polonnaruwa'];
+        }
+        if (isset($educationFilterData['Puttalam'])) {
+            $locationValues[] = $educationFilterData['Puttalam'];
+        }
+        if (isset($educationFilterData['Ratnapura'])) {
+            $locationValues[] = $educationFilterData['Ratnapura'];
+        }
+        if (isset($educationFilterData['Trincomalee'])) {
+            $locationValues[] = $educationFilterData['Trincomalee'];
+        }
+        if (isset($educationFilterData['Vavuniya'])) {
+            $locationValues[] = $educationFilterData['Vavuniya'];
+        }
 
         $adsQuery = DB::table('ads')
             ->where('ads.status', 1)
@@ -653,6 +1188,9 @@ class mainFilterController extends Controller
 
         if (isset($educationFilterData['max'])) {
             $adsQuery->where('ads.ads_price', '<=', $educationFilterData['max']);
+        }
+        if (!empty($locationValues)) {
+            $adsQuery->whereIn('ads.ads_location', $locationValues);
         }
 
         $ads = $adsQuery

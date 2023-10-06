@@ -10,12 +10,13 @@
             <div class="row content-reverse">
                 <div class="col-lg-4 col-xl-3">
                     <div class="row">
-                        <div class="col-md-6 col-lg-12">
-                            <div class="product-widget">
-                                <h6 class="product-widget-title">Filter by Price</h6>
-                                <form method="POST" action="{{ route('electronics.filterdAds') }}"
-                                    class="product-widget-form">
-                                    @csrf
+                        <form method="POST" action="{{ route('electronics.filterdAds') }}" class="product-widget-form">
+
+                            @csrf
+                            <div class="col-md-6 col-lg-12">
+                                <div class="product-widget">
+                                    <h6 class="product-widget-title">Filter by Price</h6>
+
                                     <div class="product-widget-group">
                                         <input name="min"
                                             value="{{ session('electronics_filter_data')['min'] ?? null }}" type="text"
@@ -29,26 +30,13 @@
                                         <i class="fas fa-search"></i>
                                         <span>search</span>
                                     </button>
-                                </form>
+
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-6 col-lg-12">
-                            <div class="product-widget">
-                                <h6 class="product-widget-title">Filter by condition</h6>
-                                <form method="POST" action="{{ route('electronics.filterdAds') }}"
-                                    class="product-widget-form">
-                                    @csrf
-                                    <input type="hidden" name="subCat" type="text" value="{{ $id }}">
-
-                                    {{-- send max min data with condition start --}}
-                                    <input name="min" type="hidden"
-                                        value="{{ session('electronics_filter_data')['min'] ?? null }}" type="text"
-                                        placeholder="min">
-                                    <input name="max" type="hidden"
-                                        value="{{ session('electronics_filter_data')['max'] ?? null }}" type="text"
-                                        placeholder="max">
-                                    {{-- send max min data with condition start --}}
+                            <div class="col-md-6 col-lg-12">
+                                <div class="product-widget">
+                                    <h6 class="product-widget-title">Filter by condition</h6>
 
                                     <ul class="product-widget-list">
                                         <li class="product-widget-item">
@@ -76,26 +64,13 @@
                                         <i class="fas fa-search"></i>
                                         <span>search</span>
                                     </button>
-                                </form>
+
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-6 col-lg-12">
-                            <div class="product-widget">
-                                <h6 class="product-widget-title">Filter by location</h6>
-                                <form method="POST" action="{{ route('electronics.filterdAds') }}"
-                                    class="product-widget-form">
-                                    @csrf
-                                    <input type="text" name="subCat" type="text" value="{{ $id }}">
-
-                                    {{-- send max min data with condition start --}}
-                                    <input name="min" type="text"
-                                        value="{{ session('electronics_filter_data')['min'] ?? null }}" type="text"
-                                        placeholder="min">
-                                    <input name="max" type="text"
-                                        value="{{ session('electronics_filter_data')['max'] ?? null }}" type="text"
-                                        placeholder="max">
-                                    {{-- send max min data with condition start --}}
+                            <div class="col-md-6 col-lg-12">
+                                <div class="product-widget">
+                                    <h6 class="product-widget-title">Filter by location</h6>
 
                                     <ul class="product-widget-list">
                                         <li class="product-widget-item">
@@ -128,9 +103,9 @@
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
-                                            <div class="product-widget-checkbox"> <input type="checkbox"
-                                                    value="Batticaloa" class="condition" name="Batticaloa"
-                                                    id="chcek2" @if (null !== session('electronics_filter_data.Batticaloa')) checked @endif>
+                                            <div class="product-widget-checkbox"> <input type="checkbox" value="Batticaloa"
+                                                    class="condition" name="Batticaloa" id="chcek2"
+                                                    @if (null !== session('electronics_filter_data.Batticaloa')) checked @endif>
 
                                             </div>
                                             <label class="product-widget-label" for="chcek2">
@@ -352,11 +327,12 @@
                                         <i class="fas fa-search"></i>
                                         <span>search</span>
                                     </button>
-                                </form>
-                            </div>
-                        </div>
 
+                                </div>
+                            </div>
+                        </form>
                     </div>
+
                 </div>
                 <div class="col-lg-8 col-xl-9">
                     <div class="row">
@@ -553,4 +529,6 @@
             window.location.href = url;
         }
     </script>
+
+
 @endsection
