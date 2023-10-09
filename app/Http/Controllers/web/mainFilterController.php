@@ -66,6 +66,24 @@ class mainFilterController extends Controller
                 "Trincomalee" => $request->Trincomalee ?? null,
                 "Vavuniya" => $request->Vavuniya ?? null,
 
+                // air cooelr capacity data
+                "capacity_12000" => $request->capacity_12000 ?? null,
+                "capacity_18000" => $request->capacity_18000 ?? null,
+                "capacity_22000" => $request->capacity_22000 ?? null,
+                "capacity_24000" => $request->capacity_24000 ?? null,
+                "capacity_other" => $request->capacity_other ?? null,
+
+                // air cooler capacity data
+                "inch_65" => $request->inch_65 ?? null,
+                "inch_60" => $request->inch_60 ?? null,
+                "inch_55" => $request->inch_55 ?? null,
+                "inch_50" => $request->inch_50 ?? null,
+                "inch_43" => $request->inch_43 ?? null,
+                "inch_40" => $request->inch_40 ?? null,
+                "inch_32" => $request->inch_32 ?? null,
+                "inch_24" => $request->inch_24 ?? null,
+                "inch_other" => $request->inch_other ?? null,
+
             ]
         ]);
         return redirect()->route('electronics.filterd.ads');
@@ -83,6 +101,54 @@ class mainFilterController extends Controller
         }
         if (isset($electronicsFilterData['used'])) {
             $conditionValues[] = $electronicsFilterData['used'];
+        }
+
+        $inches = []; // store electronics in a array
+        if (isset($electronicsFilterData['inch_other'])) {
+            $inches[] = $electronicsFilterData['inch_other'];
+        }
+        if (isset($electronicsFilterData['inch_24'])) {
+            $inches[] = $electronicsFilterData['inch_24'];
+        }
+        if (isset($electronicsFilterData['inch_32'])) {
+            $inches[] = $electronicsFilterData['inch_32'];
+        }
+        if (isset($electronicsFilterData['inch_40'])) {
+            $inches[] = $electronicsFilterData['inch_40'];
+        }
+        if (isset($electronicsFilterData['inch_43'])) {
+            $inches[] = $electronicsFilterData['inch_43'];
+        }
+        if (isset($electronicsFilterData['inch_50'])) {
+            $inches[] = $electronicsFilterData['inch_50'];
+        }
+        if (isset($electronicsFilterData['inch_55'])) {
+            $inches[] = $electronicsFilterData['inch_55'];
+        }
+        if (isset($electronicsFilterData['inch_60'])) {
+            $inches[] = $electronicsFilterData['inch_60'];
+        }
+        if (isset($electronicsFilterData['inch_other'])) {
+            $inches[] = $electronicsFilterData['inch_other'];
+        }
+
+        // need to add aircooler
+        //store values in array
+        $capacity = []; // store air filter capacity in a array
+        if (isset($electronicsFilterData['capacity_other'])) {
+            $capacity[] = $electronicsFilterData['capacity_other'];
+        }
+        if (isset($electronicsFilterData['capacity_24000'])) {
+            $capacity[] = $electronicsFilterData['capacity_24000'];
+        }
+        if (isset($electronicsFilterData['capacity_22000'])) {
+            $capacity[] = $electronicsFilterData['capacity_22000'];
+        }
+        if (isset($electronicsFilterData['capacity_18000'])) {
+            $capacity[] = $electronicsFilterData['capacity_18000'];
+        }
+        if (isset($electronicsFilterData['capacity_12000'])) {
+            $capacity[] = $electronicsFilterData['capacity_12000'];
         }
 
         //store values in array
@@ -183,6 +249,12 @@ class mainFilterController extends Controller
         if (!empty($locationValues)) {
             $adsQuery->whereIn('ads.ads_location', $locationValues);
         }
+        if (!empty($capacity)) {
+            $adsQuery->whereIn('electronics.elec_capacity', $capacity);
+        }
+        if (!empty($inches)) {
+            $adsQuery->whereIn('electronics.elec_screen_size', $inches);
+        }
 
         $ads = $adsQuery
             ->orderBy('ads.id', 'desc')
@@ -250,6 +322,22 @@ class mainFilterController extends Controller
                 "Ratnapura" => $request->Ratnapura ?? null,
                 "Trincomalee" => $request->Trincomalee ?? null,
                 "Vavuniya" => $request->Vavuniya ?? null,
+
+                'New' => $request->New ?? null,
+                'Used' => $request->Used ?? null,
+                'Reconditioned' => $request->Reconditioned ?? null,
+
+                'Other' => $request->Other ?? null,
+                'Tiptronic' => $request->Tiptronic ?? null,
+                'Automatic' => $request->Automatic ?? null,
+                'Manual' => $request->Manual ?? null,
+
+                'Diesel' => $request->Diesel ?? null,
+                'Petrol' => $request->Petrol ?? null,
+                'CNG' => $request->CNG ?? null,
+                'Hybrid' => $request->Hybrid ?? null,
+                'Electric' => $request->Electric ?? null,
+                'other' => $request->other ?? null,
             ]
         ]);
 
@@ -260,6 +348,53 @@ class mainFilterController extends Controller
     {
         $cat_id = 3;
         $vehiclesFilterData = session('vehicle_filter_data', []);
+
+        //store values in array
+        $conditionValues = []; // store electronics in a array
+        if (isset($vehiclesFilterData['New'])) {
+            $conditionValues[] = $vehiclesFilterData['New'];
+        }
+        if (isset($vehiclesFilterData['Used'])) {
+            $conditionValues[] = $vehiclesFilterData['Used'];
+        }
+        if (isset($vehiclesFilterData['Reconditioned'])) {
+            $conditionValues[] = $vehiclesFilterData['Reconditioned'];
+        }
+
+        //store values in array
+        $fuel_type = []; // store electronics in a array
+        if (isset($vehiclesFilterData['other'])) {
+            $fuel_type[] = $vehiclesFilterData['other'];
+        }
+        if (isset($vehiclesFilterData['Electric'])) {
+            $fuel_type[] = $vehiclesFilterData['Electric'];
+        }
+        if (isset($vehiclesFilterData['Hybrid'])) {
+            $fuel_type[] = $vehiclesFilterData['Hybrid'];
+        }
+        if (isset($vehiclesFilterData['CNG'])) {
+            $fuel_type[] = $vehiclesFilterData['CNG'];
+        }
+        if (isset($vehiclesFilterData['Petrol'])) {
+            $fuel_type[] = $vehiclesFilterData['Petrol'];
+        }
+        if (isset($vehiclesFilterData['Diesel'])) {
+            $fuel_type[] = $vehiclesFilterData['Diesel'];
+        }
+
+        $transmission = []; // store electronics in a array
+        if (isset($vehiclesFilterData['Other'])) {
+            $transmission[] = $vehiclesFilterData['Other'];
+        }
+        if (isset($vehiclesFilterData['Tiptronic'])) {
+            $transmission[] = $vehiclesFilterData['Tiptronic'];
+        }
+        if (isset($vehiclesFilterData['Automatic'])) {
+            $transmission[] = $vehiclesFilterData['Automatic'];
+        }
+        if (isset($vehiclesFilterData['Manual'])) {
+            $transmission[] = $vehiclesFilterData['Manual'];
+        }
 
         //store values in array
         $locationValues = []; // store location in a array
@@ -357,6 +492,15 @@ class mainFilterController extends Controller
         }
         if (!empty($locationValues)) {
             $adsQuery->whereIn('ads.ads_location', $locationValues);
+        }
+        if (!empty($conditionValues)) {
+            $adsQuery->whereIn('vehicle.condition', $conditionValues);
+        }
+        if (!empty($transmission)) {
+            $adsQuery->whereIn('vehicle.transmission', $transmission);
+        }
+        if (!empty($fuel_type)) {
+            $adsQuery->whereIn('vehicle.fuel_type', $fuel_type);
         }
 
         $ads = $adsQuery

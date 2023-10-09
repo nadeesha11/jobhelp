@@ -29,8 +29,167 @@
                                 </div>
                             </div>
 
+                            @if ($id == 15 || $id == 18 || $id == 23)
+                            @else
+                                <div class="col-md-6 col-lg-12">
+                                    <div class="product-widget">
+                                        <h6 class="product-widget-title">Filter by condition</h6>
+                                        <ul class="product-widget-list">
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"><input type="checkbox" value="New"
+                                                        name="New" id="chcek1" class="condition"
+                                                        @if (null !== session('vehicle_filter_data.New')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek1">
+                                                    <span>New</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox" value="Used"
+                                                        class="condition" name="Used" id="chcek2"
+                                                        @if (null !== session('vehicle_filter_data.Used')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>Used</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="Reconditioned" class="condition" name="Reconditioned"
+                                                        id="chcek2" @if (null !== session('vehicle_filter_data.Reconditioned')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>Reconditioned</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="product-widget-btn">
+                                            <i class="fas fa-search"></i>
+                                            <span>search</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endif
 
+                            @if ($id == 17)
+                                <div class="col-md-6 col-lg-12">
+                                    <div class="product-widget">
+                                        <h6 class="product-widget-title">Filter by Transmission</h6>
+                                        <ul class="product-widget-list">
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"><input type="checkbox" value="Manual"
+                                                        name="Manual" id="chcek1" class="condition"
+                                                        @if (null !== session('vehicle_filter_data.Manual')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek1">
+                                                    <span>Manual</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="Automatic" class="condition" name="Automatic" id="chcek2"
+                                                        @if (null !== session('vehicle_filter_data.Automatic')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>Automatic</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="Tiptronic" class="condition" name="Tiptronic" id="chcek2"
+                                                        @if (null !== session('vehicle_filter_data.Tiptronic')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>Tiptronic</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox" value="Other"
+                                                        class="condition" name="Other" id="chcek2"
+                                                        @if (null !== session('vehicle_filter_data.Other')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>Other</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="product-widget-btn">
+                                            <i class="fas fa-search"></i>
+                                            <span>search</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            @else
+                            @endif
 
+                            @if ($id == 17)
+                                <div class="col-md-6 col-lg-12">
+                                    <div class="product-widget">
+                                        <h6 class="product-widget-title">Filter by Fuel Type</h6>
+                                        <ul class="product-widget-list">
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"><input type="checkbox"
+                                                        value="Diesel" name="Diesel" id="chcek1" class="condition"
+                                                        @if (null !== session('vehicle_filter_data.Diesel')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek1">
+                                                    <span>Diesel</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="Petrol" class="condition" name="Petrol" id="chcek2"
+                                                        @if (null !== session('vehicle_filter_data.Petrol')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>Petrol</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="CNG" class="condition" name="CNG" id="chcek2"
+                                                        @if (null !== session('vehicle_filter_data.CNG')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>CNG</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="Hybrid" class="condition" name="Hybrid" id="chcek2"
+                                                        @if (null !== session('vehicle_filter_data.Hybrid')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>Hybrid</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="Electric" class="condition" name="Electric"
+                                                        id="chcek2" @if (null !== session('vehicle_filter_data.Electric')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>Electric</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="other" class="condition" name="other" id="chcek2"
+                                                        @if (null !== session('vehicle_filter_data.other')) checked @endif>
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>other</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="product-widget-btn">
+                                            <i class="fas fa-search"></i>
+                                            <span>search</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            @else
+                            @endif
 
                             <div class="col-md-6 col-lg-12">
                                 <div class="product-widget">
@@ -67,9 +226,9 @@
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
-                                            <div class="product-widget-checkbox"> <input type="checkbox" value="Batticaloa"
-                                                    class="condition" name="Batticaloa" id="chcek2"
-                                                    @if (null !== session('vehicle_filter_data.Batticaloa')) checked @endif>
+                                            <div class="product-widget-checkbox"> <input type="checkbox"
+                                                    value="Batticaloa" class="condition" name="Batticaloa"
+                                                    id="chcek2" @if (null !== session('vehicle_filter_data.Batticaloa')) checked @endif>
 
                                             </div>
                                             <label class="product-widget-label" for="chcek2">
@@ -107,9 +266,9 @@
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
-                                            <div class="product-widget-checkbox"> <input type="checkbox" value="Hambantota"
-                                                    class="condition" name="Hambantota" id="chcek2"
-                                                    @if (null !== session('vehicle_filter_data.Hambantota')) checked @endif>
+                                            <div class="product-widget-checkbox"> <input type="checkbox"
+                                                    value="Hambantota" class="condition" name="Hambantota"
+                                                    id="chcek2" @if (null !== session('vehicle_filter_data.Hambantota')) checked @endif>
 
                                             </div>
                                             <label class="product-widget-label" for="chcek2">

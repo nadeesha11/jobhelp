@@ -16,7 +16,6 @@
                             <div class="col-md-6 col-lg-12">
                                 <div class="product-widget">
                                     <h6 class="product-widget-title">Filter by Price</h6>
-
                                     <div class="product-widget-group">
                                         <input name="min"
                                             value="{{ session('electronics_filter_data')['min'] ?? null }}" type="text"
@@ -30,20 +29,17 @@
                                         <i class="fas fa-search"></i>
                                         <span>search</span>
                                     </button>
-
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-lg-12">
                                 <div class="product-widget">
                                     <h6 class="product-widget-title">Filter by condition</h6>
-
                                     <ul class="product-widget-list">
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"><input type="checkbox" value="1"
                                                     name="new" id="chcek1" class="condition"
                                                     @if (null !== session('electronics_filter_data.new')) checked @endif>
-
                                             </div>
                                             <label class="product-widget-label" for="chcek1">
                                                 <span class="product-widget-type rent ">new</span>
@@ -53,7 +49,6 @@
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="0"
                                                     class="condition" name="used" id="chcek2"
                                                     @if (null !== session('electronics_filter_data.used')) checked @endif>
-
                                             </div>
                                             <label class="product-widget-label" for="chcek2">
                                                 <span class="product-widget-type sale">used</span>
@@ -64,9 +59,167 @@
                                         <i class="fas fa-search"></i>
                                         <span>search</span>
                                     </button>
-
                                 </div>
                             </div>
+
+
+
+                            @if ($id == 10)
+                                <div class="col-md-6 col-lg-12">
+                                    <div class="product-widget">
+                                        <h6 class="product-widget-title">Filter by Capacity</h6>
+                                        <ul class="product-widget-list">
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"><input type="checkbox" value="12000"
+                                                        @if (null !== session('electronics_filter_data.capacity_12000')) checked @endif
+                                                        name="capacity_12000" id="chcek1" class="condition">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek1">
+                                                    <span>12000 BTU</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox" value="18000"
+                                                        @if (null !== session('electronics_filter_data.capacity_18000')) checked @endif class="condition"
+                                                        name="capacity_18000" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>18000 BTU</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox" value="22000"
+                                                        @if (null !== session('electronics_filter_data.capacity_22000')) checked @endif class="condition"
+                                                        name="capacity_22000" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>22000 BTU</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox" value="24000"
+                                                        @if (null !== session('electronics_filter_data.capacity_24000')) checked @endif class="condition"
+                                                        name="capacity_24000" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>24000 BTU</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        @if (null !== session('electronics_filter_data.capacity_other')) checked @endif
+                                                        value="capacity_other" class="condition" name="capacity_other"
+                                                        id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>other</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="product-widget-btn">
+                                            <i class="fas fa-search"></i>
+                                            <span>search</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            @else
+                            @endif
+
+                            @if ($id == 11)
+                                <div class="col-md-6 col-lg-12">
+                                    <div class="product-widget">
+                                        <h6 class="product-widget-title">Filter by Capacity</h6>
+                                        <ul class="product-widget-list">
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"><input type="checkbox"
+                                                        value="24" @if (null !== session('electronics_filter_data.inch_24')) checked @endif
+                                                        name="inch_24" id="chcek1" class="condition">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek1">
+                                                    <span>24 inches</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"><input type="checkbox"
+                                                        value="32" @if (null !== session('electronics_filter_data.inch_32')) checked @endif
+                                                        name="inch_32" id="chcek1" class="condition">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek1">
+                                                    <span>32 inches</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="40" @if (null !== session('electronics_filter_data.inch_40')) checked @endif
+                                                        class="condition" name="inch_40" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>40 inches</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="43" @if (null !== session('electronics_filter_data.inch_43')) checked @endif
+                                                        class="condition" name="inch_43" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>43 inches</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        value="50" @if (null !== session('electronics_filter_data.inch_50')) checked @endif
+                                                        class="condition" name="inch_50" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>50 inches</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        @if (null !== session('electronics_filter_data.inch_55')) checked @endif value="55"
+                                                        class="condition" name="inch_55" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>55 inches</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        @if (null !== session('electronics_filter_data.inch_60')) checked @endif value="60"
+                                                        class="condition" name="inch_60" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>60 inches</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        @if (null !== session('electronics_filter_data.inch_65')) checked @endif value="65"
+                                                        class="condition" name="inch_65" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>65 inches</span>
+                                                </label>
+                                            </li>
+                                            <li class="product-widget-item">
+                                                <div class="product-widget-checkbox"> <input type="checkbox"
+                                                        @if (null !== session('electronics_filter_data.inch_other')) checked @endif value="other"
+                                                        class="condition" name="inch_other" id="chcek2">
+                                                </div>
+                                                <label class="product-widget-label" for="chcek2">
+                                                    <span>other</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                        <button type="submit" class="product-widget-btn">
+                                            <i class="fas fa-search"></i>
+                                            <span>search</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            @else
+                            @endif
 
                             <div class="col-md-6 col-lg-12">
                                 <div class="product-widget">
@@ -103,9 +256,9 @@
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
-                                            <div class="product-widget-checkbox"> <input type="checkbox" value="Batticaloa"
-                                                    class="condition" name="Batticaloa" id="chcek2"
-                                                    @if (null !== session('electronics_filter_data.Batticaloa')) checked @endif>
+                                            <div class="product-widget-checkbox"> <input type="checkbox"
+                                                    value="Batticaloa" class="condition" name="Batticaloa"
+                                                    id="chcek2" @if (null !== session('electronics_filter_data.Batticaloa')) checked @endif>
 
                                             </div>
                                             <label class="product-widget-label" for="chcek2">
