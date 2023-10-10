@@ -67,23 +67,51 @@
 </head>
 
 <body>
+    <style>
+        #login_hover:hover {
+            background-color: #5DA300 !important;
+        }
+    </style>
     <!--=====================================
                     HEADER PART START
         =======================================-->
+    <div style="background-color: #5DA300 !important; padding: 6px 12px 6px 12px !important;" class="header-content">
+        <div class="header-left ">
+
+            <select style="background: transparent !important; color:white !important; border:none !important;"
+                name="" id="">
+                <option value="Sinhala">Sinhala</option>
+                <option value="English">English</option>
+                <option value="Tamil">Tamil</option>
+            </select>
+        </div>
+        <div style="color: #ffffff !important;" class="header-form row">
+            <div class="col-4"><i class="fa-solid fa-phone"></i> <span>Contact : 0876 2323 2323</span></div>
+            <div class="col-4"><i class="fa-solid fa-envelope"></i> <span>Email : Contact@Jobhelp.com</span></div>
+            <div class="col-4"><i class="fa-solid fa-location-dot"></i> <span>Contact : Colombo 10, Sri Lanka</span>
+            </div>
+        </div>
+        <div style="color: #ffffff !important;" class="header-right">
+            <span><i class="fa-brands fa-facebook p-2"></i></span>
+            <span><i class="fa-brands fa-twitter p-2"></i></span>
+            <span><i class="fa-brands fa-linkedin p-2"></i></span>
+            <span><i class="fa-brands fa-youtube p-2"></i></span>
+        </div>
+    </div>
     <header class="header-part">
         <div class="container">
+
             <div class="header-content">
                 <div class="header-left">
                     <button type="button" class="header-widget sidebar-btn">
                         <i class="fas fa-align-left"></i>
                     </button>
                     <a href="index.html" class="header-logo">
-                        <img src="{{ asset('images/logo.png') }}" alt="logo">
+                        {{-- <img src="{{ asset('images/logo.png') }}" alt="logo">
+                         --}}
+                        <h2 style="color: #5DA300">LOGO</h2>
                     </a>
-                    <a href="{{ route('web.userForm') }}" class="header-widget header-user">
-                        <img src="{{ asset('images/user.png') }}" alt="user">
-                        <span>Login</span>
-                    </a>
+
                     <button type="button" class="header-widget search-btn">
                         <i class="fas fa-search"></i>
                     </button>
@@ -107,178 +135,18 @@
                 </form>
                 <div class="header-right">
                     <ul class="header-list">
+
                         <li class="header-item">
-                            <a href="bookmark.html" class="header-widget">
-                                <i class="fas fa-heart"></i>
-                                <sup>0</sup>
+                            <a type="button" href="{{ route('web.userForm') }}" class="header-widget ">
+                                <i id="login_hover" class="fa-solid fa-user"></i>
                             </a>
-                        </li>
-                        <li class="header-item">
-                            <button type="button" class="header-widget">
-                                <i class="fas fa-envelope"></i>
-                                <sup>0</sup>
-                            </button>
-                            <div class="dropdown-card">
-                                <div class="dropdown-header">
-                                    <h5>message (2)</h5>
-                                    <a href="message.html">view all</a>
-                                </div>
-                                <ul class="message-list">
-                                    <li class="message-item unread">
-                                        <a href="message.html" class="message-link">
-                                            <div class="message-img active">
-                                                <img src="{{ asset('images/avatar/01.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="message-text">
-                                                <h6>miron mahmud <span>now</span></h6>
-                                                <p>How are you my best frien...</p>
-                                            </div>
-                                            <span class="message-count">4</span>
-                                        </a>
-                                    </li>
-                                    <li class="message-item">
-                                        <a href="message.html" class="message-link">
-                                            <div class="message-img active">
-                                                <img src="{{ asset('images/avatar/03.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="message-text">
-                                                <h6>shipu ahmed <span>3m</span></h6>
-                                                <p><span>me:</span>How are you my best frien...</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="message-item unread">
-                                        <a href="message.html" class="message-link">
-                                            <div class="message-img">
-                                                <img src="{{ asset('images/avatar/02.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="message-text">
-                                                <h6>tahmina bonny <span>2h</span></h6>
-                                                <p>How are you my best frien...</p>
-                                            </div>
-                                            <span class="message-count">12</span>
-                                        </a>
-                                    </li>
-                                    <li class="message-item">
-                                        <a href="message.html" class="message-link">
-                                            <div class="message-img active">
-                                                <img src="{{ asset('images/avatar/04.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="message-text">
-                                                <h6>nasrullah <span>5d</span></h6>
-                                                <p>How are you my best frien...</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="message-item">
-                                        <a href="message.html" class="message-link">
-                                            <div class="message-img">
-                                                <img src="{{ asset('images/user.png') }}" alt="avatar">
-                                            </div>
-                                            <div class="message-text">
-                                                <h6>saikul azam <span>7w</span></h6>
-                                                <p><span>me:</span>How are you my best frien...</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="message-item">
-                                        <a href="message.html" class="message-link">
-                                            <div class="message-img active">
-                                                <img src="{{ asset('images/avatar/02.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="message-text">
-                                                <h6>munni akter <span>9m</span></h6>
-                                                <p>How are you my best frien...</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="message-item">
-                                        <a href="message.html" class="message-link">
-                                            <div class="message-img active">
-                                                <img src="{{ asset('images/avatar/03.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="message-text">
-                                                <h6>shahin alam <span>1y</span></h6>
-                                                <p>How are you my best frien...</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="header-item">
-                            <button type="button" class="header-widget">
-                                <i class="fas fa-bell"></i>
-                                <sup>0</sup>
-                            </button>
                             <div class="dropdown-card">
                                 <div class="dropdown-header">
                                     <h5>Notification (1)</h5>
                                     <a href="notification.html">view all</a>
                                 </div>
                                 <ul class="notify-list">
-                                    <li class="notify-item active">
-                                        <a href="#" class="notify-link">
-                                            <div class="notify-img">
-                                                <img src="{{ asset('images/avatar/01.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="notify-content">
-                                                <p class="notify-text"><span>miron mahmud</span> has added the
-                                                    advertisement post of your <span>booking</span> to his wishlist.</p>
-                                                <span class="notify-time">just now</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notify-item">
-                                        <a href="#" class="notify-link">
-                                            <div class="notify-img">
-                                                <img src="{{ asset('images/avatar/02.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="notify-content">
-                                                <p class="notify-text"><span>tahmina bonny</span> gave you a
-                                                    <span>comment</span> and 5 star <span>review.</span>
-                                                </p>
-                                                <span class="notify-time">2 hours ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notify-item">
-                                        <a href="#" class="notify-link">
-                                            <div class="notify-img">
-                                                <img src="{{ asset('images/avatar/03.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="notify-content">
-                                                <p class="notify-text"><span>shipu ahmed</span> and <span>4
-                                                        other</span> have seen your contact number</p>
-                                                <span class="notify-time">3 minutes ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notify-item">
-                                        <a href="#" class="notify-link">
-                                            <div class="notify-img">
-                                                <img src="{{ asset('images/avatar/02.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="notify-content">
-                                                <p class="notify-text"><span>miron mahmud</span> has added the
-                                                    advertisement post of your <span>booking</span> to his wishlist.</p>
-                                                <span class="notify-time">5 days ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notify-item">
-                                        <a href="#" class="notify-link">
-                                            <div class="notify-img">
-                                                <img src="{{ asset('images/avatar/04.jpg') }}" alt="avatar">
-                                            </div>
-                                            <div class="notify-content">
-                                                <p class="notify-text"><span>labonno khan</span> gave you a
-                                                    <span>comment</span> and 5 star <span>review.</span>
-                                                </p>
-                                                <span class="notify-time">4 months ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
+
                                     <li class="notify-item">
                                         <a href="#" class="notify-link">
                                             <div class="notify-img">
@@ -296,14 +164,8 @@
                         </li>
                     </ul>
 
-                    <select class="selectpicker" data-width="fit">
-                        <option href="locale/en" data-content=' English'>English</option>
-                        <option href="locale/tm" data-content=' Español'>සිංහල</option>
-                        <option href="locale/si" data-content=' Español'>தமிழ்</option>
-                    </select>
-
-
-                    <a href="ad-post.html" class="btn btn-inline post-btn">
+                    <a href="#" style="background-color: #5DA300 !important; border:none !important;"
+                        class="btn btn-inline post-btn">
                         <i class="fas fa-plus-circle"></i>
                         <span>post your ad</span>
                     </a>
@@ -311,6 +173,22 @@
             </div>
         </div>
     </header>
+    <div style="background-color: #ffffff !important; padding: 6px 12px 6px 12px !important; border-top:solid rgb(211, 208, 208) 1px !important"
+        class="header-content">
+        <div class="header-left ">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a style="color: #5DA300" class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #000000" class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #000000" class="nav-link disabled">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <!--=====================================
                     HEADER PART END
         =======================================-->

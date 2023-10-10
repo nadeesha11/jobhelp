@@ -6,29 +6,25 @@
                 <h1>You can #Buy, #Rent, #Booking anything from here.</h1>
                 <p>Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and
                     more in the world.</p>
-                <a href="ad-list-column3.html" class="btn btn-outline">
+                <a style="color: #ffffff !important; background:#5DA300 !important; border:none !important;"
+                    href="ad-list-column3.html" class="btn btn-outline">
                     <i class="fas fa-eye"></i>
                     <span>Show all ads</span>
                 </a>
             </div>
         </div>
     </section>
-    <!--=====================================
-                                                                                                                                            BANNER PART END
-                                                                                                                                =======================================-->
 
-
-    <!--=====================================
-                                                                                                                                            SUGGEST PART START
-                                                                                                                                =======================================-->
     <section class="suggest-part">
         <div class="container">
             <div class="suggest-slider slider-arrow">
                 @foreach ($categories as $item)
-                    <a href="{{ route('ads.displaymain.ads', ['id' => $item->id]) }}" class="suggest-card">
+                    <a href="{{ route('ads.displaymain.ads', ['id' => $item->id]) }}"
+                        style="background: white !important; border-bottom:2px solid #5DA300 !important;"
+                        class="suggest-card">
                         <img src="{{ asset('uploaded_images/cat_images/' . $item->cat_image) }}" alt="car">
-                        <h6>{{ $item->cat_name }}</h6>
-                        <p>
+                        <h6 style="color: black !important;">{{ $item->cat_name }}</h6>
+                        <p style="color: #5DA300 !important;">
                             @if ($item->id == 2)
                                 ads({{ $electronicCount }})
                             @elseif ($item->id == 3)
@@ -48,23 +44,17 @@
             </div>
         </div>
     </section>
-    <!--=====================================
-                                                                                                                                            SUGGEST PART END
-                                                                                                                                =======================================-->
 
-
-    <!--=====================================
-                                                                                                                                            FEATURE PART START
-                                                                                                                                =======================================-->
     <section class="section feature-part">
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-lg-5">
                     <div class="section-side-heading">
-                        <h2>Find your needs in our best <span>Featured Ads</span></h2>
+                        <h2>Find your needs in our best <span style="color: #5DA300 !important;">Featured Ads</span></h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit aspernatur illum vel sunt libero
                             voluptatum repudiandae veniam maxime tenetur fugiat eaque alias nobis doloremque culpa nam.</p>
-                        <a href="ad-list-column3.html" class="btn btn-inline">
+                        <a style="background-color: #5DA300 !important; color:#ffffff !important;"
+                            href="ad-list-column3.html" class="btn btn-inline">
                             <i class="fas fa-eye"></i>
                             <span>view all featured</span>
                         </a>
@@ -184,13 +174,13 @@
         </div>
     </section>
     <!--=====================================
-                                                                                                                                            FEATURE PART END
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            FEATURE PART END
+                                                                                                                                                                                                                =======================================-->
 
 
     <!--=====================================
-                                                                                                                                            RECOMEND PART START
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            RECOMEND PART START
+                                                                                                                                                                                                                =======================================-->
     <section class="section recomend-part">
         <div class="container">
             <div class="row">
@@ -411,7 +401,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="center-50">
-                        <a href="ad-list-column3.html" class="btn btn-inline">
+                        <a style="background-color: #5DA300 !important; color:#ffffff !important;"
+                            href="ad-list-column3.html" class="btn btn-inline">
                             <i class="fas fa-eye"></i>
                             <span>view all recommend</span>
                         </a>
@@ -421,13 +412,13 @@
         </div>
     </section>
     <!--=====================================
-                                                                                                                                            RECOMEND PART START
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            RECOMEND PART START
+                                                                                                                                                                                                                =======================================-->
 
 
     <!--=====================================
-                                                                                                                                            TREND PART START
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            TREND PART START
+                                                                                                                                                                                                                =======================================-->
     <section class="section trend-part">
         <div class="container">
             <div class="row">
@@ -706,13 +697,13 @@
         </div>
     </section>
     <!--=====================================
-                                                                                                                                            TREND PART END
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            TREND PART END
+                                                                                                                                                                                                                =======================================-->
 
 
     <!--=====================================
-                                                                                                                                            NICHE PART START
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            NICHE PART START
+                                                                                                                                                                                                                =======================================-->
     <section class="section niche-part">
         <div class="container">
             <div class="row">
@@ -1772,13 +1763,13 @@
         </div>
     </section>
     <!--=====================================
-                                                                                                                                            NICHE PART END
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            NICHE PART END
+                                                                                                                                                                                                                =======================================-->
 
 
     <!--=====================================
-                                                                                                                                            CITY PART START
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            CITY PART START
+                                                                                                                                                                                                                =======================================-->
     <section class="section city-part">
         <div class="container">
             <div class="row">
@@ -1859,13 +1850,13 @@
         </div>
     </section>
     <!--=====================================
-                                                                                                                                            CITY PART END
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            CITY PART END
+                                                                                                                                                                                                                =======================================-->
 
 
     <!--=====================================
-                                                                                                                                            CATEGORY PART START
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            CATEGORY PART START
+                                                                                                                                                                                                                =======================================-->
     <section class="section category-part">
         <div class="container">
             <div class="row">
@@ -2156,13 +2147,13 @@
         </div>
     </section>
     <!--=====================================
-                                                                                                                                            CATEGORY PART END
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            CATEGORY PART END
+                                                                                                                                                                                                                =======================================-->
 
 
     <!--=====================================
-                                                                                                                                            INTRO PART START
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            INTRO PART START
+                                                                                                                                                                                                                =======================================-->
     <section class="intro-part">
         <div class="container">
             <div class="row">
@@ -2181,13 +2172,13 @@
         </div>
     </section>
     <!--=====================================
-                                                                                                                                            INTRO PART END
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                            INTRO PART END
+                                                                                                                                                                                                                =======================================-->
 
 
     <!--=====================================
-                                                                                                                                             PRICE PART START
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                             PRICE PART START
+                                                                                                                                                                                                                =======================================-->
     <section class="price-part">
         <div class="container">
             <div class="row">
@@ -2315,13 +2306,13 @@
         </div>
     </section>
     <!--=====================================
-                                                                                                                                             PRICE PART END
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                             PRICE PART END
+                                                                                                                                                                                                                =======================================-->
 
 
     <!--=====================================
-                                                                                                                                             BLOG PART START
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                             BLOG PART START
+                                                                                                                                                                                                                =======================================-->
     <section class="blog-part">
         <div class="container">
             <div class="row">
@@ -2484,6 +2475,6 @@
         </div>
     </section>
     <!--=====================================
-                                                                                                                                             BLOG PART END
-                                                                                                                                =======================================-->
+                                                                                                                                                                                                                             BLOG PART END
+                                                                                                                                                                                                                =======================================-->
 @endsection
