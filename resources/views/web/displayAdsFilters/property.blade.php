@@ -38,250 +38,250 @@
                                     <ul class="product-widget-list">
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"><input type="checkbox" value="Ampara"
-                                                    name="Ampara" id="chcek1" class="condition"
+                                                    name="Ampara" class="condition"
                                                     @if (null !== session('property_filter_data.Ampara')) checked @endif>
                                             </div>
-                                            <label class="product-widget-label" for="chcek1">
+                                            <label class="product-widget-label">
                                                 <span>Ampara</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox"
                                                     value="Anuradhapura" class="condition" name="Anuradhapura"
-                                                    id="chcek2" @if (null !== session('property_filter_data.Anuradhapura')) checked @endif>
+                                                    @if (null !== session('property_filter_data.Anuradhapura')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Anuradhapura</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Badulla"
-                                                    class="condition" name="Badulla" id="chcek2"
+                                                    class="condition" name="Badulla"
                                                     @if (null !== session('property_filter_data.Badulla')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Badulla</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Batticaloa"
-                                                    class="condition" name="Batticaloa" id="chcek2"
+                                                    class="condition" name="Batticaloa"
                                                     @if (null !== session('property_filter_data.Batticaloa')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Batticaloa</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Colombo"
-                                                    class="condition" name="Colombo" id="chcek2"
+                                                    class="condition" name="Colombo"
                                                     @if (null !== session('property_filter_data.Colombo')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Colombo</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Galle"
-                                                    class="condition" name="Galle" id="chcek2"
+                                                    class="condition" name="Galle"
                                                     @if (null !== session('property_filter_data.Galle')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Galle</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Gampaha"
-                                                    class="condition" name="Gampaha" id="chcek2"
+                                                    class="condition" name="Gampaha"
                                                     @if (null !== session('property_filter_data.Gampaha')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Gampaha</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Hambantota"
-                                                    class="condition" name="Hambantota" id="chcek2"
+                                                    class="condition" name="Hambantota"
                                                     @if (null !== session('property_filter_data.Hambantota')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Hambantota</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Jaffna"
-                                                    class="condition" name="Jaffna" id="chcek2"
+                                                    class="condition" name="Jaffna"
                                                     @if (null !== session('property_filter_data.Jaffna')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Jaffna</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Kalutara"
-                                                    class="condition" name="Kalutara" id="chcek2"
+                                                    class="condition" name="Kalutara"
                                                     @if (null !== session('property_filter_data.Kalutara')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Kalutara</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Kandy"
-                                                    class="condition" name="Kandy" id="chcek2"
+                                                    class="condition" name="Kandy"
                                                     @if (null !== session('property_filter_data.Kandy')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Kandy</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Kegalle"
-                                                    class="condition" name="Kegalle" id="chcek2"
+                                                    class="condition" name="Kegalle"
                                                     @if (null !== session('property_filter_data.Kegalle')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Kegalle</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox"
                                                     value="Kilinochchi" class="condition" name="Kilinochchi"
-                                                    id="chcek2" @if (null !== session('property_filter_data.Kilinochchi')) checked @endif>
+                                                    @if (null !== session('property_filter_data.Kilinochchi')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Kilinochchi</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox"
                                                     value="Kurunegala" class="condition" name="Kurunegala"
-                                                    id="chcek2" @if (null !== session('property_filter_data.Kurunegala')) checked @endif>
+                                                    @if (null !== session('property_filter_data.Kurunegala')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Kurunegala</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Mannar"
-                                                    class="condition" name="Mannar" id="chcek2"
+                                                    class="condition" name="Mannar"
                                                     @if (null !== session('property_filter_data.Mannar')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Mannar</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Matale"
-                                                    class="condition" name="Matale" id="chcek2"
+                                                    class="condition" name="Matale"
                                                     @if (null !== session('property_filter_data.Matale')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Matale</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Matara"
-                                                    class="condition" name="Matara" id="chcek2"
+                                                    class="condition" name="Matara"
                                                     @if (null !== session('property_filter_data.Matara')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Matara</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox"
                                                     value="Monaragala" class="condition" name="Monaragala"
-                                                    id="chcek2" @if (null !== session('property_filter_data.Monaragala')) checked @endif>
+                                                    @if (null !== session('property_filter_data.Monaragala')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Monaragala</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox"
                                                     value="Mullaitivu" class="condition" name="Mullaitivu"
-                                                    id="chcek2" @if (null !== session('property_filter_data.Mullaitivu')) checked @endif>
+                                                    @if (null !== session('property_filter_data.Mullaitivu')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Mullaitivu</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox"
                                                     value="Nuwara Eliya" class="condition" name="Nuwara_Eliya"
-                                                    id="chcek2" @if (null !== session('property_filter_data.Nuwara_Eliya')) checked @endif>
+                                                    @if (null !== session('property_filter_data.Nuwara_Eliya')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Nuwara Eliya</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox"
                                                     value="Polonnaruwa" class="condition" name="Polonnaruwa"
-                                                    id="chcek2" @if (null !== session('property_filter_data.Polonnaruwa')) checked @endif>
+                                                    @if (null !== session('property_filter_data.Polonnaruwa')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Polonnaruwa</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Puttalam"
-                                                    class="condition" name="Puttalam" id="chcek2"
+                                                    class="condition" name="Puttalam"
                                                     @if (null !== session('property_filter_data.Puttalam')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Puttalam</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox"
-                                                    value="Ratnapura" class="condition" name="Ratnapura" id="chcek2"
+                                                    value="Ratnapura" class="condition" name="Ratnapura"
                                                     @if (null !== session('property_filter_data.Ratnapura')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Ratnapura</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox"
                                                     value="Trincomalee" class="condition" name="Trincomalee"
-                                                    id="chcek2" @if (null !== session('property_filter_data.Trincomalee')) checked @endif>
+                                                    @if (null !== session('property_filter_data.Trincomalee')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Trincomalee</span>
                                             </label>
                                         </li>
                                         <li class="product-widget-item">
                                             <div class="product-widget-checkbox"> <input type="checkbox" value="Vavuniya"
-                                                    class="condition" name="Vavuniya" id="chcek2"
+                                                    class="condition" name="Vavuniya"
                                                     @if (null !== session('property_filter_data.Vavuniya')) checked @endif>
 
                                             </div>
-                                            <label class="product-widget-label" for="chcek2">
+                                            <label class="product-widget-label">
                                                 <span>Vavuniya</span>
                                             </label>
                                         </li>

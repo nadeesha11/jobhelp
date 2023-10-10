@@ -13,6 +13,7 @@ class mainFilterController extends Controller
     protected function electronics($id)
     {
 
+        $brands = DB::table('subcategory_brands')->where('sub_cat_id', $id)->get();
         $cat_id = 2;
         // Forget a specific session variable
         session()->forget('electronics_filter_data');
@@ -26,11 +27,12 @@ class mainFilterController extends Controller
             ->select('ads.*', 'subcategory.sub_cat_name as subCatName')
             ->paginate(12);
 
-        return view('web.displayAdsFilters.electronics', compact('ads', 'id', 'cat_id'));
+        return view('web.displayAdsFilters.electronics', compact('ads', 'id', 'cat_id', 'brands'));
     }
 
     public function electronicsFilterdRedirect(Request $request)
     {
+
         $oldFilterData = session('electronics_filter_data', []); // get old session data
         session([
             'electronics_filter_data' => [
@@ -83,6 +85,9 @@ class mainFilterController extends Controller
                 "inch_32" => $request->inch_32 ?? null,
                 "inch_24" => $request->inch_24 ?? null,
                 "inch_other" => $request->inch_other ?? null,
+
+                //brands 
+
 
             ]
         ]);
@@ -338,6 +343,14 @@ class mainFilterController extends Controller
                 'Hybrid' => $request->Hybrid ?? null,
                 'Electric' => $request->Electric ?? null,
                 'other' => $request->other ?? null,
+
+                'Saloon' => $request->Saloon ?? null,
+                'Hatchback' => $request->Hatchback ?? null,
+                'Station_wagon' => $request->Station_wagon ?? null,
+                'Convertible' => $request->Convertible ?? null,
+                'Coupé_Sports' => $request->Coupé_Sports ?? null,
+                'SUV_4x4' => $request->SUV_4x4 ?? null,
+                'MPV' => $request->MPV ?? null,
             ]
         ]);
 
@@ -348,6 +361,30 @@ class mainFilterController extends Controller
     {
         $cat_id = 3;
         $vehiclesFilterData = session('vehicle_filter_data', []);
+
+        //store values in array
+        $body_type = []; // store electronics in a array
+        if (isset($vehiclesFilterData['Saloon'])) {
+            $body_type[] = $vehiclesFilterData['Saloon'];
+        }
+        if (isset($vehiclesFilterData['Hatchback'])) {
+            $body_type[] = $vehiclesFilterData['Hatchback'];
+        }
+        if (isset($vehiclesFilterData['Station_wagon'])) {
+            $body_type[] = $vehiclesFilterData['Station_wagon'];
+        }
+        if (isset($vehiclesFilterData['Convertible'])) {
+            $body_type[] = $vehiclesFilterData['Convertible'];
+        }
+        if (isset($vehiclesFilterData['Coupé_Sports'])) {
+            $body_type[] = $vehiclesFilterData['Coupé_Sports'];
+        }
+        if (isset($vehiclesFilterData['SUV_4x4'])) {
+            $body_type[] = $vehiclesFilterData['SUV_4x4'];
+        }
+        if (isset($vehiclesFilterData['MPV'])) {
+            $body_type[] = $vehiclesFilterData['MPV'];
+        }
 
         //store values in array
         $conditionValues = []; // store electronics in a array
@@ -501,6 +538,9 @@ class mainFilterController extends Controller
         }
         if (!empty($fuel_type)) {
             $adsQuery->whereIn('vehicle.fuel_type', $fuel_type);
+        }
+        if (!empty($body_type)) {
+            $adsQuery->whereIn('vehicle.body_type', $body_type);
         }
 
         $ads = $adsQuery

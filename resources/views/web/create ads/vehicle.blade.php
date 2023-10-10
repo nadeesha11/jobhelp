@@ -140,13 +140,13 @@
                                     <select class="browser-default custom-select customSelect resetInput" name="Bodytype"
                                         id="Bodytype" aria-label="Default select example">
                                         <option selected value="">Open this select menu</option>
-                                        <option value="New">Saloon</option>
-                                        <option value="Used">Hatchback</option>
-                                        <option value="Reconditioned">Station wagon</option>
-                                        <option value="New">Convertible</option>
-                                        <option value="Used">Coupé/Sports</option>
-                                        <option value="Reconditioned">SUV / 4x4</option>
-                                        <option value="Reconditioned">MPV</option>
+                                        <option value="Saloon">Saloon</option>
+                                        <option value="Hatchback">Hatchback</option>
+                                        <option value="Station_wagon">Station wagon</option>
+                                        <option value="Convertible">Convertible</option>
+                                        <option value="Coupé_Sports">Coupé/Sports</option>
+                                        <option value="SUV_4x4">SUV / 4x4</option>
+                                        <option value="MPV">MPV</option>
                                     </select>
                                     <span class="text-danger error" id="Bodytype_error"></span>
                                 </div>
@@ -156,7 +156,6 @@
                         </div>
 
                         <div class="col-lg-6 col-12 ">
-
                             @if (
                                 $subCategory->id == 17 ||
                                     $subCategory->id == 19 ||
